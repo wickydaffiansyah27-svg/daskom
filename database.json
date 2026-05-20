@@ -1,0 +1,529 @@
+{
+  "admin": {
+    "username": "admin",
+    "password": "123"
+  },
+  "mahasiswa": [
+    {
+      "nim": "20240001",
+      "nama": "Wicky",
+      "semester": {
+        "1": [
+          {
+            "nama": "Pendidikan Agama Islam",
+            "sks": 2,
+            "nilai": 63,
+            "grade": "A"
+          },
+          {
+            "nama": "Pendidikan Pancasila",
+            "sks": 2,
+            "nilai": 94,
+            "grade": "A"
+          },
+          {
+            "nama": "Bahasa Inggris",
+            "sks": 3,
+            "nilai": 78,
+            "grade": "A"
+          },
+          {
+            "nama": "Kalkulus",
+            "sks": 4,
+            "nilai": 85,
+            "grade": "A"
+          }
+        ],
+        "2": [
+          {
+            "nama": "Pemrograman",
+            "sks": 3,
+            "nilai": 63,
+            "grade": "A"
+          },
+          {
+            "nama": "Basis Data",
+            "sks": 3,
+            "nilai": 76,
+            "grade": "A"
+          },
+          {
+            "nama": "Jaringan",
+            "sks": 3,
+            "nilai": 87,
+            "grade": "A"
+          }
+        ]
+      }
+    },
+    {
+      "nim": "20240002",
+      "nama": "Jason",
+      "semester": {
+        "1": [
+          {
+            "nama": "Pendidikan Agama Islam",
+            "sks": 2,
+            "nilai": 86,
+            "grade": "A"
+          },
+          {
+            "nama": "Pendidikan Pancasila",
+            "sks": 2,
+            "nilai": 67,
+            "grade": "A"
+          },
+          {
+            "nama": "Bahasa Inggris",
+            "sks": 3,
+            "nilai": 92,
+            "grade": "A"
+          },
+          {
+            "nama": "Kalkulus",
+            "sks": 4,
+            "nilai": 78,
+            "grade": "A"
+          }
+        ],
+        "2": [
+          {
+            "nama": "Pemrograman",
+            "sks": 3,
+            "nilai": 93,
+            "grade": "A"
+          },
+          {
+            "nama": "Basis Data",
+            "sks": 3,
+            "nilai": 84,
+            "grade": "A"
+          },
+          {
+            "nama": "Jaringan",
+            "sks": 3,
+            "nilai": 61,
+            "grade": "A"
+          }
+        ]
+      }
+    },
+    {
+      "nim": "20240003",
+      "nama": "Calvin",
+      "semester": {
+        "1": [
+          {
+            "nama": "Pendidikan Agama Islam",
+            "sks": 2,
+            "nilai": 63,
+            "grade": "A"
+          },
+          {
+            "nama": "Pendidikan Pancasila",
+            "sks": 2,
+            "nilai": 81,
+            "grade": "A"
+          },
+          {
+            "nama": "Bahasa Inggris",
+            "sks": 3,
+            "nilai": 64,
+            "grade": "A"
+          },
+          {
+            "nama": "Kalkulus",
+            "sks": 4,
+            "nilai": 89,
+            "grade": "A"
+          }
+        ],
+        "2": [
+          {
+            "nama": "Pemrograman",
+            "sks": 3,
+            "nilai": 81,
+            "grade": "A"
+          },
+          {
+            "nama": "Basis Data",
+            "sks": 3,
+            "nilai": 66,
+            "grade": "A"
+          },
+          {
+            "nama": "Jaringan",
+            "sks": 3,
+            "nilai": 79,
+            "grade": "A"
+          }
+        ]
+      }
+    },
+    {
+      "nim": "20240004",
+      "nama": "Senku",
+      "semester": {
+        "1": [
+          {
+            "nama": "Pendidikan Agama Islam",
+            "sks": 2,
+            "nilai": 75,
+            "grade": "A"
+          },
+          {
+            "nama": "Pendidikan Pancasila",
+            "sks": 2,
+            "nilai": 67,
+            "grade": "A"
+          },
+          {
+            "nama": "Bahasa Inggris",
+            "sks": 3,
+            "nilai": 71,
+            "grade": "A"
+          },
+          {
+            "nama": "Kalkulus",
+            "sks": 4,
+            "nilai": 85,
+            "grade": "A"
+          }
+        ],
+        "2": [
+          {
+            "nama": "Pemrograman",
+            "sks": 3,
+            "nilai": 89,
+            "grade": "A"
+          },
+          {
+            "nama": "Basis Data",
+            "sks": 3,
+            "nilai": 94,
+            "grade": "A"
+          },
+          {
+            "nama": "Jaringan",
+            "sks": 3,
+            "nilai": 85,
+            "grade": "A"
+          }
+        ]
+      }
+    },
+    {
+      "nim": "20240005",
+      "nama": "Albert",
+      "semester": {
+        "1": [
+          {
+            "nama": "Pendidikan Agama Islam",
+            "sks": 2,
+            "nilai": 76,
+            "grade": "A"
+          },
+          {
+            "nama": "Pendidikan Pancasila",
+            "sks": 2,
+            "nilai": 91,
+            "grade": "A"
+          },
+          {
+            "nama": "Bahasa Inggris",
+            "sks": 3,
+            "nilai": 70,
+            "grade": "A"
+          },
+          {
+            "nama": "Kalkulus",
+            "sks": 4,
+            "nilai": 88,
+            "grade": "A"
+          }
+        ],
+        "2": [
+          {
+            "nama": "Pemrograman",
+            "sks": 3,
+            "nilai": 65,
+            "grade": "A"
+          },
+          {
+            "nama": "Basis Data",
+            "sks": 3,
+            "nilai": 86,
+            "grade": "A"
+          },
+          {
+            "nama": "Jaringan",
+            "sks": 3,
+            "nilai": 76,
+            "grade": "A"
+          }
+        ]
+      }
+    },
+    {
+      "nim": "20240006",
+      "nama": "Leclerc",
+      "semester": {
+        "1": [
+          {
+            "nama": "Pendidikan Agama Islam",
+            "sks": 2,
+            "nilai": 84,
+            "grade": "A"
+          },
+          {
+            "nama": "Pendidikan Pancasila",
+            "sks": 2,
+            "nilai": 88,
+            "grade": "A"
+          },
+          {
+            "nama": "Bahasa Inggris",
+            "sks": 3,
+            "nilai": 93,
+            "grade": "A"
+          },
+          {
+            "nama": "Kalkulus",
+            "sks": 4,
+            "nilai": 84,
+            "grade": "A"
+          }
+        ],
+        "2": [
+          {
+            "nama": "Pemrograman",
+            "sks": 3,
+            "nilai": 84,
+            "grade": "A"
+          },
+          {
+            "nama": "Basis Data",
+            "sks": 3,
+            "nilai": 78,
+            "grade": "A"
+          },
+          {
+            "nama": "Jaringan",
+            "sks": 3,
+            "nilai": 95,
+            "grade": "A"
+          }
+        ]
+      }
+    },
+    {
+      "nim": "20240007",
+      "nama": "Max",
+      "semester": {
+        "1": [
+          {
+            "nama": "Pendidikan Agama Islam",
+            "sks": 2,
+            "nilai": 63,
+            "grade": "A"
+          },
+          {
+            "nama": "Pendidikan Pancasila",
+            "sks": 2,
+            "nilai": 67,
+            "grade": "A"
+          },
+          {
+            "nama": "Bahasa Inggris",
+            "sks": 3,
+            "nilai": 84,
+            "grade": "A"
+          },
+          {
+            "nama": "Kalkulus",
+            "sks": 4,
+            "nilai": 73,
+            "grade": "A"
+          }
+        ],
+        "2": [
+          {
+            "nama": "Pemrograman",
+            "sks": 3,
+            "nilai": 91,
+            "grade": "A"
+          },
+          {
+            "nama": "Basis Data",
+            "sks": 3,
+            "nilai": 95,
+            "grade": "A"
+          },
+          {
+            "nama": "Jaringan",
+            "sks": 3,
+            "nilai": 75,
+            "grade": "A"
+          }
+        ]
+      }
+    },
+    {
+      "nim": "20240008",
+      "nama": "Arthur",
+      "semester": {
+        "1": [
+          {
+            "nama": "Pendidikan Agama Islam",
+            "sks": 2,
+            "nilai": 84,
+            "grade": "A"
+          },
+          {
+            "nama": "Pendidikan Pancasila",
+            "sks": 2,
+            "nilai": 88,
+            "grade": "A"
+          },
+          {
+            "nama": "Bahasa Inggris",
+            "sks": 3,
+            "nilai": 67,
+            "grade": "A"
+          },
+          {
+            "nama": "Kalkulus",
+            "sks": 4,
+            "nilai": 80,
+            "grade": "A"
+          }
+        ],
+        "2": [
+          {
+            "nama": "Pemrograman",
+            "sks": 3,
+            "nilai": 73,
+            "grade": "A"
+          },
+          {
+            "nama": "Basis Data",
+            "sks": 3,
+            "nilai": 69,
+            "grade": "A"
+          },
+          {
+            "nama": "Jaringan",
+            "sks": 3,
+            "nilai": 95,
+            "grade": "A"
+          }
+        ]
+      }
+    },
+    {
+      "nim": "20240009",
+      "nama": "Intan",
+      "semester": {
+        "1": [
+          {
+            "nama": "Pendidikan Agama Islam",
+            "sks": 2,
+            "nilai": 65,
+            "grade": "A"
+          },
+          {
+            "nama": "Pendidikan Pancasila",
+            "sks": 2,
+            "nilai": 66,
+            "grade": "A"
+          },
+          {
+            "nama": "Bahasa Inggris",
+            "sks": 3,
+            "nilai": 64,
+            "grade": "A"
+          },
+          {
+            "nama": "Kalkulus",
+            "sks": 4,
+            "nilai": 70,
+            "grade": "A"
+          }
+        ],
+        "2": [
+          {
+            "nama": "Pemrograman",
+            "sks": 3,
+            "nilai": 64,
+            "grade": "A"
+          },
+          {
+            "nama": "Basis Data",
+            "sks": 3,
+            "nilai": 61,
+            "grade": "A"
+          },
+          {
+            "nama": "Jaringan",
+            "sks": 3,
+            "nilai": 91,
+            "grade": "A"
+          }
+        ]
+      }
+    },
+    {
+      "nim": "20240010",
+      "nama": "taylor",
+      "semester": {
+        "1": [
+          {
+            "nama": "Pendidikan Agama Islam",
+            "sks": 2,
+            "nilai": 66,
+            "grade": "A"
+          },
+          {
+            "nama": "Pendidikan Pancasila",
+            "sks": 2,
+            "nilai": 65,
+            "grade": "A"
+          },
+          {
+            "nama": "Bahasa Inggris",
+            "sks": 3,
+            "nilai": 79,
+            "grade": "A"
+          },
+          {
+            "nama": "Kalkulus",
+            "sks": 4,
+            "nilai": 92,
+            "grade": "A"
+          }
+        ],
+        "2": [
+          {
+            "nama": "Pemrograman",
+            "sks": 3,
+            "nilai": 84,
+            "grade": "A"
+          },
+          {
+            "nama": "Basis Data",
+            "sks": 3,
+            "nilai": 77,
+            "grade": "A"
+          },
+          {
+            "nama": "Jaringan",
+            "sks": 3,
+            "nilai": 80,
+            "grade": "A"
+          }
+        ]
+      }
+    }
+  ],
+  "riwayat": []
+}
