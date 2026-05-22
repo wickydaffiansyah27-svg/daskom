@@ -36,13 +36,52 @@ C = {
     "kuning_muda": "#FEF3C7",
     "ungu":        "#7C3AED",
     "ungu_muda":   "#F5F3FF",
+
+     # Warna utama - Hijau Hutan
+    "hijau_hutan":     "#2D5016",      # Dark forest green
+    "hijau_daun":      "#4A7C23",      # Leaf green
+    "hijau_muda":      "#8FBC8F",      # Light green / sage
+    "hijau_aksen":     "#6B8E23",      # Olive drab accent
+    "hijau_terang":    "#C8E6C9",      # Very light green background
+
+    # Warna coklat - Tanah & Kayu
+    "coklat":          "#8B4513",      # Saddle brown
+    "coklat_kayu":     "#A0522D",      # Sienna
+    "coklat_muda":     "#D2B48C",      # Tan
+    "coklat_krem":     "#F5DEB3",      # Wheat
+    
+    # Warna netral
+    "putih":           "#FFFFFF",
+    "abu_bg":          "#F0F4EF",      # Light gray with green tint
+    "abu_card":        "#E8F0E8",      # Card background with green hint
+    "abu_border":      "#C8D5C8",      # Border with green tint
+    "teks":            "#1A2E1A",      # Dark green-black text
+    "teks_sub":        "#5A6B5A",      # Subtle green-gray text
+
+    # Warna aksen tambahan
+    "merah":           "#B22222",      # Firebrick (berry red)
+    "merah_muda":      "#FFD6D6",
+    "kuning":          "#DAA520",      # Goldenrod (sunflower)
+    "kuning_muda":     "#FFF8DC",      # Cornsilk
+    "ungu":            "#6B5B95",      # Wisteria purple
+    "ungu_muda":       "#E6E6FA",      # Lavender
+
+     # Alias untuk kompatibilitas dengan kode yang menggunakan nama warna lama
+    "biru":            "#2D5016",      # Menggunakan hijau hutan sebagai pengganti biru
+    "biru_gelap":      "#1A3009",
+    "biru_muda":       "#C8E6C9",
+    "biru_aksen":      "#4A7C23",
+    "hijau":           "#4A7C23",
 }
 
 F_JUDUL   = ("Segoe UI", 22, "bold")
 F_SUBJUDUL= ("Segoe UI", 14, "bold")
+F_JUDUL   = ("Segoe UI", 20, "bold")
+F_SUBJUDUL= ("Segoe UI", 13, "bold")
 F_NORMAL  = ("Segoe UI", 11)
 F_KECIL   = ("Segoe UI", 9)
 F_MONO    = ("Consolas", 10)
+F_TEBEL   = ("Segoe UI", 11, "bold")
 
 # ============================================================
 # HELPER
@@ -115,7 +154,7 @@ def _style_tree():
         borderwidth=0,
     )
     s.configure("App.Treeview.Heading",
-        background=C["biru"],
+        background=C["hijau_hutan"],
         foreground=C["putih"],
         font=("Segoe UI", 11, "bold"),
         borderwidth=0,
@@ -123,8 +162,8 @@ def _style_tree():
         padding=(0, 10),
     )
     s.map("App.Treeview",
-        background=[("selected", C["biru_muda"])],
-        foreground=[("selected", C["biru"])]
+        background=[("selected", C["hijau_muda"])],
+        foreground=[("selected", C["hijau_hutan"])]
     )
 
 
@@ -450,7 +489,7 @@ class Sidebar(ctk.CTkFrame):
     def __init__(self, parent, on_navigate):
         super().__init__(parent,
             width=220, corner_radius=0,
-            fg_color=C["biru_gelap"],
+            fg_color=C["hijau_hutan"],
         )
         self.pack_propagate(False)
         self._nav = on_navigate
@@ -475,6 +514,7 @@ class Sidebar(ctk.CTkFrame):
         ).pack(anchor="w")
 
         ctk.CTkFrame(self, height=1, fg_color="#2D4A8A").pack(fill="x", padx=16)
+        ctk.CTkFrame(self, height=1, fg_color=C["hijau_aksen"]).pack(fill="x", padx=16)
 
         menu_frame = ctk.CTkFrame(self, fg_color="transparent")
         menu_frame.pack(fill="x", padx=12, pady=16)
@@ -488,7 +528,7 @@ class Sidebar(ctk.CTkFrame):
                 height=40,
                 font=("Segoe UI", 11),
                 fg_color="transparent",
-                hover_color="#2D4A8A",
+                hover_color=C["hijau_daun"],
                 text_color="#CBD5E1",
                 corner_radius=8,
                 command=lambda k=key: self._klik(k),
@@ -513,9 +553,10 @@ class Sidebar(ctk.CTkFrame):
     def _klik(self, key: str):
         for k, b in self._btns.items():
             b.configure(fg_color="transparent", text_color="#CBD5E1", font=("Segoe UI", 11))
+            b.configure(fg_color="transparent", text_color="#CBD5E1", font=F_NORMAL)
         if key in self._btns:
             self._btns[key].configure(
-                fg_color=C["biru_aksen"],
+                fg_color=C["hijau_aksen"],
                 text_color="#FFFFFF",
                 font=("Segoe UI", 11, "bold"),
             )
@@ -573,8 +614,8 @@ class HalamanDashboard(HalamanBase):
 
         self._cards = {}
         specs = [
-            ("total",       "Total Mahasiswa",  C["biru"],   "orang terdaftar"),
-            ("sudah_nilai", "Sudah Input Nilai", C["hijau"],  "mahasiswa"),
+            ("total",       "Total Mahasiswa",  C["hijau_hutan"],   "orang terdaftar"),
+            ("sudah_nilai", "Sudah Input Nilai", C["hijau_daun"],  "mahasiswa"),
             ("rata_ipk",    "Rata-rata IPK",     C["kuning"], "dari 4.00"),
             ("belum_nilai", "Belum Input Nilai", C["merah"],  "mahasiswa"),
         ]
@@ -592,7 +633,8 @@ class HalamanDashboard(HalamanBase):
             ).place(x=22, y=16)
 
             val_lbl = ctk.CTkLabel(card, text="0",
-                font=("Segoe UI", 34, "bold"), text_color=warna)
+
+                font=("Segoe UI", 32, "bold"), text_color=warna)
             val_lbl.place(x=22, y=38)
 
             ctk.CTkLabel(card, text=satuan,
@@ -614,7 +656,7 @@ class HalamanDashboard(HalamanBase):
             font=("Segoe UI", 8, "bold"), text_color=C["teks_sub"]
         ).place(x=18, y=14)
         self._lbl_best = ctk.CTkLabel(info_card, text="belum ada data",
-            font=("Segoe UI", 13, "bold"), text_color=C["biru"])
+            font=("Segoe UI", 13, "bold"), text_color=C["hijau_hutan"])
         self._lbl_best.place(x=18, y=34)
         self._lbl_best_ipk = ctk.CTkLabel(info_card, text="",
             font=("Segoe UI", 10), text_color=C["teks_sub"])
@@ -631,7 +673,7 @@ class HalamanDashboard(HalamanBase):
         self._lbl_ipk_max.place(relx=0.59, y=34)
 
         ctk.CTkLabel(info_card, text="IPK TERENDAH",
-            font=("Segoe UI", 8), text_color=C["teks_sub"]
+            font=("Segoe UI", 8), text_color=C["teks_sub"]  
         ).place(relx=0.59, y=66)
         self._lbl_ipk_min = ctk.CTkLabel(info_card, text="0.00",
             font=("Segoe UI", 20, "bold"), text_color=C["merah"])
