@@ -31,10 +31,12 @@ C = {
     "abu_card":       "#1a0f2e",      # Card background with galaxy hint
     "abu_border":     "#2d1f4e",      # Border with purple tint
 
-    # Text colors
-    "teks":           "#e2d9f3",      # Purple-white main text
-    "teks_sub":       "#a78bca",      # Subtle purple-gray text
-    "putih":          "#f5f3ff",      # Off-white for cards
+    # Text colors - improved for better readability
+    "teks":           "#f0e6ff",      # Bright lavender-white main text (lebih terang)
+    "teks_sub":       "#c9b8e8",      # Lighter purple-gray text (lebih keliatan)
+    "teks_input":     "#ffffff",      # Pure white for input text (maksimal kontras)
+    "placeholder":    "#a78bca",      # Placeholder text color
+    "putih":          "#1e1335",      # Dark purple for cards/input background
 
     # Status colors - adapted for galaxy theme
     "hijau":          "#4ade80",      # Bright green for success
@@ -77,7 +79,8 @@ def _entry(parent, placeholder="", show="", width=280):
         corner_radius=8,
         border_color=C["abu_border"],
         fg_color=C["putih"],
-        text_color=C["teks"],
+        text_color=C["teks_input"],
+        placeholder_text_color=C["placeholder"],
     )
 
 
@@ -200,7 +203,7 @@ class Chart:
             gx = PAD_L + int(chart_w * i / grid_steps)
             gy1, gy2 = PAD_T, PAD_T + chart_h
             canvas.create_line(gx, gy1, gx, gy2,
-                               fill="#E2E8F0", width=1, dash=(3, 3))
+                               fill="#4a3f5c", width=1, dash=(3, 3))
             val_label = int(max_val * i / grid_steps)
             canvas.create_text(gx, PAD_T + chart_h + 10,
                                text=str(val_label),
@@ -214,7 +217,7 @@ class Chart:
 
             # Background track
             canvas.create_rectangle(PAD_L, y1, PAD_L + chart_w, y2,
-                                    fill="#F1F5F9", outline="")
+                                    fill="#2a1f3d", outline="")
             # Bar
             if bar_len > 0:
                 canvas.create_rectangle(PAD_L, y1, PAD_L + bar_len, y2,
@@ -276,7 +279,7 @@ class Chart:
         for i in range(grid_steps + 1):
             gy = PAD_T + chart_h - int(chart_h * i / grid_steps)
             canvas.create_line(PAD_L, gy, PAD_L + chart_w, gy,
-                               fill="#E2E8F0", width=1, dash=(3, 3))
+                               fill="#4a3f5c", width=1, dash=(3, 3))
             val_label = int(max_val * i / grid_steps)
             canvas.create_text(PAD_L - 6, gy,
                                text=str(val_label),
@@ -406,7 +409,7 @@ class Chart:
             gy = PAD_T + chart_h - int(chart_h * i / grid_steps)
             gval = min_val + (max_val - min_val) * i / grid_steps
             canvas.create_line(PAD_L, gy, PAD_L + chart_w, gy,
-                               fill="#E2E8F0", width=1, dash=(3, 3))
+                               fill="#4a3f5c", width=1, dash=(3, 3))
             canvas.create_text(PAD_L - 6, gy,
                                text=f"{gval:.2f}",
                                font=("Segoe UI", 7), fill=C["teks_sub"],
@@ -485,12 +488,12 @@ class Sidebar(ctk.CTkFrame):
         ctk.CTkLabel(logo_frame,
             text="Andromeda",
             font=("Segoe UI", 20, "bold"),
-            text_color="#c084fc",
+            text_color="#d4b8ff",
         ).pack(anchor="w")
         ctk.CTkLabel(logo_frame,
             text="Informasi Akademik Mahasiswa\nPendidikan Teknik Otomasi Industri dan Robotika.",
             font=("Segoe UI", 8),
-            text_color="#a78bca",
+            text_color="#c9b8e8",
             wraplength=180,
         ).pack(anchor="w")
 
@@ -510,7 +513,7 @@ class Sidebar(ctk.CTkFrame):
                 font=("Segoe UI", 11),
                 fg_color="transparent",
                 hover_color=C["hijau_daun"],
-                text_color="#e2d9f3",
+                text_color="#f0e6ff",
                 corner_radius=8,
                 command=lambda k=key: self._klik(k),
             )
@@ -526,19 +529,19 @@ class Sidebar(ctk.CTkFrame):
             font=("Segoe UI", 11),
             fg_color="transparent",
             hover_color="#7f1d1d",
-            text_color="#f87171",
+            text_color="#fca5a5",
             corner_radius=8,
             command=lambda: self._nav("logout"),
         ).pack(side="bottom", padx=12, pady=20, fill="x")
 
     def _klik(self, key: str):
         for k, b in self._btns.items():
-            b.configure(fg_color="transparent", text_color="#a78bca", font=("Segoe UI", 11))
-            b.configure(fg_color="transparent", text_color="#a78bca", font=F_NORMAL)
+            b.configure(fg_color="transparent", text_color="#c9b8e8", font=("Segoe UI", 11))
+            b.configure(fg_color="transparent", text_color="#c9b8e8", font=F_NORMAL)
         if key in self._btns:
             self._btns[key].configure(
                 fg_color=C["hijau_aksen"],
-                text_color="#e2d9f3",
+                text_color="#f0e6ff",
                 font=("Segoe UI", 11, "bold"),
             )
         self._aktif = key
@@ -1521,12 +1524,12 @@ class HalamanLogin(ctk.CTkFrame):
         kiri.place(relx=0, rely=0, relwidth=0.45, relheight=1)
 
         ctk.CTkLabel(kiri, text="Andromeda",
-            font=("Segoe UI", 42, "bold"), text_color="#c084fc"
+            font=("Segoe UI", 42, "bold"), text_color="#d4b8ff"
         ).place(relx=0.5, rely=0.38, anchor="center")
 
         ctk.CTkLabel(kiri,
             text="Informasi Akademik Mahasiswa\nPendidikan Teknik Otomasi Industri dan Robotika.",
-            font=("Segoe UI", 13), text_color="#a78bca",
+            font=("Segoe UI", 13), text_color="#c9b8e8",
             justify="center"
         ).place(relx=0.5, rely=0.52, anchor="center")
 
