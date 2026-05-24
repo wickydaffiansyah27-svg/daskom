@@ -1,7 +1,7 @@
 # ============================================================
 # ui.py  —  GUI Utama
 # Sistem Informasi Akademik Mahasiswa
-# CustomTkinter — Tema Putih Clean + Biru
+# CustomTkinter — Tema Galaxy Andromeda
 # ============================================================
 
 import customtkinter as ctk
@@ -11,67 +11,48 @@ import db
 import math
 
 # ============================================================
-# TEMA
+# TEMA - GALAXY ANDROMEDA
 # ============================================================
 
-ctk.set_appearance_mode("light")
+ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
 C = {
-    "biru":        "#1D4ED8",
-    "biru_gelap":  "#1E3A8A",
-    "biru_muda":   "#EFF6FF",
-    "biru_aksen":  "#3B82F6",
-    "putih":       "#FFFFFF",
-    "abu_bg":      "#F8FAFC",
-    "abu_card":    "#F1F5F9",
-    "abu_border":  "#E2E8F0",
-    "teks":        "#0F172A",
-    "teks_sub":    "#64748B",
-    "hijau":       "#16A34A",
-    "hijau_muda":  "#DCFCE7",
-    "merah":       "#DC2626",
-    "merah_muda":  "#FEE2E2",
-    "kuning":      "#D97706",
-    "kuning_muda": "#FEF3C7",
-    "ungu":        "#7C3AED",
-    "ungu_muda":   "#F5F3FF",
+    # Warna utama - Galaxy Andromeda
+    "ungu_galaksi":   "#7b5ea7",      # Galaxy purple - primary accent
+    "biru_bintang":   "#4a90d9",      # Star blue - primary accent
+    "ungu_terang":    "#c084fc",      # Light purple - secondary accent
+    "lavender":       "#818cf8",      # Lavender - secondary accent
 
-     # Warna utama - Hijau Hutan
-    "hijau_hutan":     "#2D5016",      # Dark forest green
-    "hijau_daun":      "#4A7C23",      # Leaf green
-    "hijau_muda":      "#8FBC8F",      # Light green / sage
-    "hijau_aksen":     "#6B8E23",      # Olive drab accent
-    "hijau_terang":    "#C8E6C9",      # Very light green background
+    # Background - Deep Space
+    "hitam_ungu":     "#0a0015",      # Deep space black-purple
+    "biru_gelap":     "#0d0a2e",      # Dark blue
+    "abu_bg":         "#0f0518",      # Main background with purple tint
+    "abu_card":       "#1a0f2e",      # Card background with galaxy hint
+    "abu_border":     "#2d1f4e",      # Border with purple tint
 
-    # Warna coklat - Tanah & Kayu
-    "coklat":          "#8B4513",      # Saddle brown
-    "coklat_kayu":     "#A0522D",      # Sienna
-    "coklat_muda":     "#D2B48C",      # Tan
-    "coklat_krem":     "#F5DEB3",      # Wheat
+    # Text colors
+    "teks":           "#e2d9f3",      # Purple-white main text
+    "teks_sub":       "#a78bca",      # Subtle purple-gray text
+    "putih":          "#f5f3ff",      # Off-white for cards
 
-    # Warna netral
-    "putih":           "#FFFFFF",
-    "abu_bg":          "#F0F4EF",      # Light gray with green tint
-    "abu_card":        "#E8F0E8",      # Card background with green hint
-    "abu_border":      "#C8D5C8",      # Border with green tint
-    "teks":            "#1A2E1A",      # Dark green-black text
-    "teks_sub":        "#5A6B5A",      # Subtle green-gray text
+    # Status colors - adapted for galaxy theme
+    "hijau":          "#4ade80",      # Bright green for success
+    "hijau_muda":     "#166534",      # Dark green background
+    "merah":          "#f87171",      # Soft red for errors
+    "merah_muda":     "#7f1d1d",      # Dark red background
+    "kuning":         "#fbbf24",      # Amber for warnings
+    "kuning_muda":    "#78350f",      # Dark amber background
+    "ungu":           "#c084fc",      # Purple for info
+    "ungu_muda":      "#3b0764",      # Dark purple background
 
-    # Warna aksen tambahan
-    "merah":           "#B22222",      # Firebrick (berry red)
-    "merah_muda":      "#FFD6D6",
-    "kuning":          "#DAA520",      # Goldenrod (sunflower)
-    "kuning_muda":     "#FFF8DC",      # Cornsilk
-    "ungu":            "#6B5B95",      # Wisteria purple
-    "ungu_muda":       "#E6E6FA",      # Lavender
-
-     # Alias untuk kompatibilitas dengan kode yang menggunakan nama warna lama
-    "biru":            "#2D5016",      # Menggunakan hijau hutan sebagai pengganti biru
-    "biru_gelap":      "#1A3009",
-    "biru_muda":       "#C8E6C9",
-    "biru_aksen":      "#4A7C23",
-    "hijau":           "#4A7C23",
+    # Alias untuk kompatibilitas dengan kode yang menggunakan nama warna lama
+    "hijau_hutan":    "#7b5ea7",      # Using galaxy purple as main sidebar color
+    "hijau_daun":     "#5a3d7a",      # Darker purple for hover
+    "hijau_aksen":    "#4a90d9",      # Star blue as accent
+    "biru":           "#4a90d9",      # Star blue as primary button color
+    "biru_muda":      "#1e1b4b",      # Dark blue for light blue alias
+    "biru_aksen":     "#818cf8",      # Lavender as blue accent
 }
 
 F_JUDUL   = ("Segoe UI", 22, "bold")
@@ -146,24 +127,24 @@ def _style_tree():
     s = ttk.Style()
     s.theme_use("clam")
     s.configure("App.Treeview",
-        background=C["putih"],
+        background=C["abu_card"],
         foreground=C["teks"],
-        fieldbackground=C["putih"],
+        fieldbackground=C["abu_card"],
         rowheight=42,
         font=("Segoe UI", 11),
         borderwidth=0,
     )
     s.configure("App.Treeview.Heading",
         background=C["hijau_hutan"],
-        foreground=C["putih"],
+        foreground="#e2d9f3",
         font=("Segoe UI", 11, "bold"),
         borderwidth=0,
         relief="flat",
         padding=(0, 10),
     )
     s.map("App.Treeview",
-        background=[("selected", C["hijau_muda"])],
-        foreground=[("selected", C["hijau_hutan"])]
+        background=[("selected", C["biru_bintang"])],
+        foreground=[("selected", "#e2d9f3")]
     )
 
 
@@ -504,16 +485,16 @@ class Sidebar(ctk.CTkFrame):
         ctk.CTkLabel(logo_frame,
             text="Andromeda",
             font=("Segoe UI", 20, "bold"),
-            text_color="#FFFFFF",
+            text_color="#c084fc",
         ).pack(anchor="w")
         ctk.CTkLabel(logo_frame,
             text="Informasi Akademik Mahasiswa\nPendidikan Teknik Otomasi Industri dan Robotika.",
             font=("Segoe UI", 8),
-            text_color="#93C5FD",
+            text_color="#a78bca",
             wraplength=180,
         ).pack(anchor="w")
 
-        ctk.CTkFrame(self, height=1, fg_color="#2D4A8A").pack(fill="x", padx=16)
+        ctk.CTkFrame(self, height=1, fg_color="#2d1f4e").pack(fill="x", padx=16)
         ctk.CTkFrame(self, height=1, fg_color=C["hijau_aksen"]).pack(fill="x", padx=16)
 
         menu_frame = ctk.CTkFrame(self, fg_color="transparent")
@@ -529,7 +510,7 @@ class Sidebar(ctk.CTkFrame):
                 font=("Segoe UI", 11),
                 fg_color="transparent",
                 hover_color=C["hijau_daun"],
-                text_color="#CBD5E1",
+                text_color="#e2d9f3",
                 corner_radius=8,
                 command=lambda k=key: self._klik(k),
             )
@@ -544,20 +525,20 @@ class Sidebar(ctk.CTkFrame):
             height=40,
             font=("Segoe UI", 11),
             fg_color="transparent",
-            hover_color="#7F1D1D",
-            text_color="#FCA5A5",
+            hover_color="#7f1d1d",
+            text_color="#f87171",
             corner_radius=8,
             command=lambda: self._nav("logout"),
         ).pack(side="bottom", padx=12, pady=20, fill="x")
 
     def _klik(self, key: str):
         for k, b in self._btns.items():
-            b.configure(fg_color="transparent", text_color="#CBD5E1", font=("Segoe UI", 11))
-            b.configure(fg_color="transparent", text_color="#CBD5E1", font=F_NORMAL)
+            b.configure(fg_color="transparent", text_color="#a78bca", font=("Segoe UI", 11))
+            b.configure(fg_color="transparent", text_color="#a78bca", font=F_NORMAL)
         if key in self._btns:
             self._btns[key].configure(
                 fg_color=C["hijau_aksen"],
-                text_color="#FFFFFF",
+                text_color="#e2d9f3",
                 font=("Segoe UI", 11, "bold"),
             )
         self._aktif = key
@@ -1438,7 +1419,7 @@ class HalamanStatistik(HalamanBase):
         # --- 4. Column chart distribusi grade ---
         grade_order = ["A", "A-", "B+", "B", "B-", "C+", "C", "D", "E"]
         grade_data = [(g, data["grade_dist"].get(g, 0)) for g in grade_order]
-  
+
         grade_colors = [
             "#059669", "#16A34A", "#22C55E", "#4ADE80", "#86EFAC",
             "#F59E0B", "#D97706", "#EA580C", "#DC2626"
@@ -1536,20 +1517,20 @@ class HalamanLogin(ctk.CTkFrame):
         self._build()
 
     def _build(self):
-        kiri = ctk.CTkFrame(self, fg_color=C["biru_gelap"], corner_radius=0)
+        kiri = ctk.CTkFrame(self, fg_color=C["hitam_ungu"], corner_radius=0)
         kiri.place(relx=0, rely=0, relwidth=0.45, relheight=1)
 
         ctk.CTkLabel(kiri, text="Andromeda",
-            font=("Segoe UI", 42, "bold"), text_color="#FFFFFF"
+            font=("Segoe UI", 42, "bold"), text_color="#c084fc"
         ).place(relx=0.5, rely=0.38, anchor="center")
 
         ctk.CTkLabel(kiri,
             text="Informasi Akademik Mahasiswa\nPendidikan Teknik Otomasi Industri dan Robotika.",
-            font=("Segoe UI", 13), text_color="#93C5FD",
+            font=("Segoe UI", 13), text_color="#a78bca",
             justify="center"
         ).place(relx=0.5, rely=0.52, anchor="center")
 
-        kanan = ctk.CTkFrame(self, fg_color=C["putih"], corner_radius=0)
+        kanan = ctk.CTkFrame(self, fg_color=C["abu_card"], corner_radius=0)
         kanan.place(relx=0.45, rely=0, relwidth=0.55, relheight=1)
 
         card = ctk.CTkFrame(kanan, fg_color="transparent", width=360)
