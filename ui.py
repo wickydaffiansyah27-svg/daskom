@@ -1,7 +1,7 @@
 # ============================================================
 # ui.py  —  GUI Utama
 # Sistem Informasi Akademik Mahasiswa
-# CustomTkinter — Tema Galaxy Andromeda
+# CustomTkinter — Tema Galaxy Andromeda (REDESIGN TOTAL)
 # ============================================================
 
 import customtkinter as ctk
@@ -11,89 +11,146 @@ import db
 import math
 
 # ============================================================
-# TEMA - GALAXY ANDROMEDA
+# TEMA - GALAXY ANDROMEDA (NEW PALETTE)
 # ============================================================
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
 C = {
-    # Warna utama - Galaxy Andromeda
-    "ungu_galaksi":   "#7b5ea7",      # Galaxy purple - primary accent
-    "biru_bintang":   "#4a90d9",      # Star blue - primary accent
-    "ungu_terang":    "#c084fc",      # Light purple - secondary accent
-    "lavender":       "#818cf8",      # Lavender - secondary accent
+    # === GALAXY ANDROMEDA PALETTE ===
+    # Background utama - Deep Space Gradient
+    "bg_main":        "#07020f",      # Hitam angkasa terdalam
+    "bg_secondary":   "#0d0a2e",      # Biru gelap nebula
 
-    # Background - Deep Space
-    "hitam_ungu":     "#0a0015",      # Deep space black-purple
-    "biru_gelap":     "#0d0a2e",      # Dark blue
-    "abu_bg":         "#0f0518",      # Main background with purple tint
-    "abu_card":       "#1a0f2e",      # Card background with galaxy hint
-    "abu_border":     "#2d1f4e",      # Border with purple tint
+    # Permukaan / Card
+    "surface":        "#130d2e",      # Purple dark surface
+    "surface_elevated": "#1a1245",    # Elevated surface
 
-    # Text colors - improved for better readability
-    "teks":           "#f0e6ff",      # Bright lavender-white main text (lebih terang)
-    "teks_sub":       "#c9b8e8",      # Lighter purple-gray text (lebih keliatan)
-    "teks_input":     "#ffffff",      # Pure white for input text (maksimal kontras)
-    "placeholder":    "#a78bca",      # Placeholder text color
-    "putih":          "#1e1335",      # Dark purple for cards/input background
+    # Aksen Primer & Sekunder
+    "primary":        "#8b5cf6",      # Ungu galaksi - main accent
+    "secondary":      "#4f8ef7",      # Biru bintang - secondary accent
+    "highlight":      "#c4b5fd",      # Lavender terang - highlights
 
-    # Status colors - adapted for galaxy theme
-    "hijau":          "#4ade80",      # Bright green for success
-    "hijau_muda":     "#166534",      # Dark green background
-    "merah":          "#f87171",      # Soft red for errors
-    "merah_muda":     "#7f1d1d",      # Dark red background
-    "kuning":         "#fbbf24",      # Amber for warnings
-    "kuning_muda":    "#78350f",      # Dark amber background
-    "ungu":           "#c084fc",      # Purple for info
-    "ungu_muda":      "#3b0764",      # Dark purple background
+    # Teks
+    "text_main":      "#e2d9f3",      # Teks utama - lavender white
+    "text_muted":     "#a78bca",      # Teks sekunder - muted purple
 
-    # Alias untuk kompatibilitas dengan kode yang menggunakan nama warna lama
-    "hijau_hutan":    "#7b5ea7",      # Using galaxy purple as main sidebar color
-    "hijau_daun":     "#5a3d7a",      # Darker purple for hover
-    "hijau_aksen":    "#4a90d9",      # Star blue as accent
-    "biru":           "#4a90d9",      # Star blue as primary button color
-    "biru_muda":      "#1e1b4b",      # Dark blue for light blue alias
-    "biru_aksen":     "#818cf8",      # Lavender as blue accent
+    # Border & Divider
+    "border_solid":   "#2d1f4e",      # Solid border for cards
+
+    # Status Colors (adapted to galaxy theme)
+    "success":        "#10b981",      # Emerald green
+    "success_bg":     "#064e3b",
+    "error":          "#ef4444",      # Red
+    "error_bg":       "#7f1d1d",
+    "warning":        "#f59e0b",      # Amber
+    "warning_bg":     "#78350f",
+    "info":           "#8b5cf6",      # Galaxy purple
+    "info_bg":        "#3b0764",
+
+    # Special Effects
+    "glow_primary":   "#a78bfa",      # Glow effect for primary
+    "glow_secondary": "#7dd3fc",      # Glow effect for secondary
+    "star_white":     "#ffffff",      # Pure white for stars/highlights
+
+    # Legacy aliases for backward compatibility
+    "hijau_hutan":    "#130d2e",
+    "hijau_daun":     "#1a1245",
+    "hijau_aksen":    "#4f8ef7",
+    "biru":           "#8b5cf6",
+    "biru_muda":      "#0d0a2e",
+    "biru_aksen":     "#c4b5fd",
+    "abu_bg":         "#07020f",
+    "abu_card":       "#130d2e",
+    "abu_border":     "#2d1f4e",
+    "teks":           "#e2d9f3",
+    "teks_sub":       "#a78bca",
+    "teks_input":     "#ffffff",
+    "placeholder":    "#a78bca",
+    "putih":          "#130d2e",
+    "hitam_ungu":     "#07020f",
+    "hijau":          "#10b981",
+    "merah":          "#ef4444",
+    "kuning":         "#f59e0b",
+    "ungu":           "#8b5cf6",
 }
 
-F_JUDUL   = ("Segoe UI", 22, "bold")
-F_SUBJUDUL= ("Segoe UI", 14, "bold")
-F_JUDUL   = ("Segoe UI", 20, "bold")
-F_SUBJUDUL= ("Segoe UI", 13, "bold")
-F_NORMAL  = ("Segoe UI", 11)
-F_KECIL   = ("Segoe UI", 9)
-F_MONO    = ("Consolas", 10)
-F_TEBEL   = ("Segoe UI", 11, "bold")
+F_JUDUL     = ("Segoe UI", 24, "bold")
+F_SUBJUDUL  = ("Segoe UI", 15, "bold")
+F_NORMAL    = ("Segoe UI", 12)
+F_KECIL     = ("Segoe UI", 10)
+F_MONO      = ("Consolas", 11)
+F_TEBEL     = ("Segoe UI", 12, "bold")
+F_LOGO      = ("Segoe UI", 28, "bold")
 
 # ============================================================
-# HELPER
+# HELPER - NEW REDESIGN
 # ============================================================
 
 def _entry(parent, placeholder="", show="", width=280):
+    """Input field dengan desain baru - rounded pill shape dengan glow effect"""
     return ctk.CTkEntry(
-        parent, width=width, height=40,
+        parent, width=width, height=48,
         placeholder_text=placeholder,
         show=show,
         font=F_NORMAL,
-        corner_radius=8,
-        border_color=C["abu_border"],
-        fg_color=C["putih"],
-        text_color=C["teks_input"],
-        placeholder_text_color=C["placeholder"],
+        corner_radius=24,  # Pill shape - completely different from before
+        border_width=2,
+        border_color=C["primary"],
+        fg_color=C["surface"],
+        text_color=C["text_main"],
+        placeholder_text_color=C["text_muted"],
     )
 
 
-def _btn(parent, text, command, color=None, width=160, height=38):
-    color = color or C["biru"]
-    return ctk.CTkButton(
-        parent, text=text, command=command,
-        width=width, height=height,
-        font=("Segoe UI", 11, "bold"),
-        fg_color=color,
-        hover_color=_gelap(color),
-        corner_radius=8,
-    )
+def _btn(parent, text, command, color=None, width=180, height=48, style="primary"):
+    """
+    Button dengan desain TOTAL BARU:
+    - Pill shape (rounded penuh)
+    - Ukuran lebih besar
+    - Gradient-like hover effect
+    - Border glow untuk primary buttons
+    """
+    color = color or C["primary"]
+
+    if style == "primary":
+        # Primary button dengan border glow
+        btn = ctk.CTkButton(
+            parent, text=text, command=command,
+            width=width, height=height,
+            font=("Segoe UI", 12, "bold"),
+            fg_color=color,
+            hover_color=C["glow_primary"],
+            corner_radius=24,  # Full rounded - pill shape
+            border_width=2,
+            border_color=C["highlight"],
+        )
+    elif style == "secondary":
+        # Secondary button dengan outline style
+        btn = ctk.CTkButton(
+            parent, text=text, command=command,
+            width=width, height=height,
+            font=("Segoe UI", 12, "bold"),
+            fg_color="transparent",
+            hover_color=C["surface_elevated"],
+            corner_radius=24,
+            border_width=2,
+            border_color=C["secondary"],
+            text_color=C["secondary"],
+        )
+    else:
+        # Default style
+        btn = ctk.CTkButton(
+            parent, text=text, command=command,
+            width=width, height=height,
+            font=("Segoe UI", 12, "bold"),
+            fg_color=color,
+            hover_color=_gelap(color),
+            corner_radius=24,
+        )
+
+    return btn
 
 
 def _gelap(hex_color: str) -> str:
@@ -101,6 +158,17 @@ def _gelap(hex_color: str) -> str:
         r = max(0, int(hex_color[1:3], 16) - 25)
         g = max(0, int(hex_color[3:5], 16) - 25)
         b = max(0, int(hex_color[5:7], 16) - 25)
+        return f"#{r:02x}{g:02x}{b:02x}"
+    except Exception:
+        return hex_color
+
+
+def _terang(hex_color: str) -> str:
+    """Membuat warna lebih terang untuk hover effect"""
+    try:
+        r = min(255, int(hex_color[1:3], 16) + 30)
+        g = min(255, int(hex_color[3:5], 16) + 30)
+        b = min(255, int(hex_color[5:7], 16) + 30)
         return f"#{r:02x}{g:02x}{b:02x}"
     except Exception:
         return hex_color
@@ -117,36 +185,36 @@ def _label(parent, text, font=None, color=None, bg=None, anchor="w"):
     return ctk.CTkLabel(
         parent, text=text,
         font=font or F_NORMAL,
-        text_color=color or C["teks"],
+        text_color=color or C["text_main"],
         anchor=anchor,
     )
 
 
 # ============================================================
-# TREEVIEW STYLE
+# TREEVIEW STYLE - REDESIGN
 # ============================================================
 
 def _style_tree():
     s = ttk.Style()
     s.theme_use("clam")
     s.configure("App.Treeview",
-        background=C["abu_card"],
-        foreground=C["teks"],
-        fieldbackground=C["abu_card"],
-        rowheight=42,
-        font=("Segoe UI", 11),
+        background=C["surface"],
+        foreground=C["text_main"],
+        fieldbackground=C["surface"],
+        rowheight=48,  # Taller rows for better readability
+        font=("Segoe UI", 12),
         borderwidth=0,
     )
     s.configure("App.Treeview.Heading",
-        background=C["hijau_hutan"],
+        background=C["primary"],
         foreground="#e2d9f3",
-        font=("Segoe UI", 11, "bold"),
+        font=("Segoe UI", 12, "bold"),
         borderwidth=0,
         relief="flat",
-        padding=(0, 10),
+        padding=(0, 12),
     )
     s.map("App.Treeview",
-        background=[("selected", C["biru_bintang"])],
+        background=[("selected", C["secondary"])],
         foreground=[("selected", "#e2d9f3")]
     )
 
@@ -457,7 +525,7 @@ class Chart:
 
 
 # ============================================================
-# KOMPONEN SIDEBAR
+# KOMPONEN SIDEBAR - REDESIGN TOTAL
 # ============================================================
 
 class Sidebar(ctk.CTkFrame):
@@ -472,8 +540,9 @@ class Sidebar(ctk.CTkFrame):
 
     def __init__(self, parent, on_navigate):
         super().__init__(parent,
-            width=220, corner_radius=0,
-            fg_color=C["hijau_hutan"],
+            width=260,  # Lebih lebar untuk desain baru
+            corner_radius=0,
+            fg_color=C["surface"],  # Surface color untuk sidebar
         )
         self.pack_propagate(False)
         self._nav = on_navigate
@@ -482,67 +551,89 @@ class Sidebar(ctk.CTkFrame):
         self._build()
 
     def _build(self):
-        logo_frame = ctk.CTkFrame(self, fg_color="transparent")
-        logo_frame.pack(fill="x", padx=20, pady=(28, 24))
+        # === HEADER DENGAN GRADIENT EFFECT ===
+        header_frame = ctk.CTkFrame(self, fg_color="transparent")
+        header_frame.pack(fill="x", padx=24, pady=(32, 24))
 
-        ctk.CTkLabel(logo_frame,
-            text="Andromeda",
-            font=("Segoe UI", 20, "bold"),
-            text_color="#d4b8ff",
-        ).pack(anchor="w")
-        ctk.CTkLabel(logo_frame,
-            text="Informasi Akademik Mahasiswa\nPendidikan Teknik Otomasi Industri dan Robotika.",
-            font=("Segoe UI", 8),
-            text_color="#c9b8e8",
-            wraplength=180,
-        ).pack(anchor="w")
+        # Logo dengan font lebih besar dan accent
+        logo_label = ctk.CTkLabel(header_frame,
+            text="✦ Andromeda",
+            font=F_LOGO,
+            text_color=C["highlight"],
+        )
+        logo_label.pack(anchor="w")
 
-        ctk.CTkFrame(self, height=1, fg_color="#2d1f4e").pack(fill="x", padx=16)
-        ctk.CTkFrame(self, height=1, fg_color=C["hijau_aksen"]).pack(fill="x", padx=16)
+        # Subtitle dengan style baru
+        subtitle_label = ctk.CTkLabel(header_frame,
+            text="Sistem Informasi Akademik\nMahasiswa",
+            font=("Segoe UI", 10),
+            text_color=C["text_muted"],
+            wraplength=200,
+            justify="left"
+        )
+        subtitle_label.pack(anchor="w", pady=(8, 0))
 
+        # === DIVIDER DENGAN ACCENT LINE ===
+        divider = ctk.CTkFrame(self, height=2, fg_color=C["primary"])
+        divider.pack(fill="x", padx=24, pady=(16, 20))
+
+        # === MENU NAVIGATION ===
         menu_frame = ctk.CTkFrame(self, fg_color="transparent")
-        menu_frame.pack(fill="x", padx=12, pady=16)
+        menu_frame.pack(fill="x", padx=16, pady=8)
 
         for label, key in self.MENU:
             b = ctk.CTkButton(
                 menu_frame,
                 text=label,
                 anchor="w",
-                width=196,
-                height=40,
-                font=("Segoe UI", 11),
+                width=228,
+                height=50,  # Lebih tinggi untuk touch-friendly
+                font=("Segoe UI", 13),
                 fg_color="transparent",
-                hover_color=C["hijau_daun"],
-                text_color="#f0e6ff",
-                corner_radius=8,
+                hover_color=C["surface_elevated"],
+                text_color=C["text_muted"],
+                corner_radius=12,  # Rounded corners untuk setiap item
+                border_width=0,
                 command=lambda k=key: self._klik(k),
             )
-            b.pack(fill="x", pady=2)
+            b.pack(fill="x", pady=3)
             self._btns[key] = b
 
+        # === LOGOUT BUTTON DI BAWAH ===
+        logout_frame = ctk.CTkFrame(self, fg_color="transparent")
+        logout_frame.pack(side="bottom", fill="x", padx=16, pady=24)
+
         ctk.CTkButton(
-            self,
-            text="Logout",
-            anchor="w",
-            width=196,
-            height=40,
-            font=("Segoe UI", 11),
-            fg_color="transparent",
-            hover_color="#7f1d1d",
-            text_color="#fca5a5",
-            corner_radius=8,
+            logout_frame,
+            text="⏻ Logout",
+            anchor="center",
+            width=228,
+            height=46,
+            font=("Segoe UI", 12, "bold"),
+            fg_color=C["error_bg"],
+            hover_color=C["error"],
+            text_color=C["error"],
+            corner_radius=12,
+            border_width=2,
+            border_color=C["error"],
             command=lambda: self._nav("logout"),
-        ).pack(side="bottom", padx=12, pady=20, fill="x")
+        ).pack()
 
     def _klik(self, key: str):
+        # Reset semua tombol ke state tidak aktif
         for k, b in self._btns.items():
-            b.configure(fg_color="transparent", text_color="#c9b8e8", font=("Segoe UI", 11))
-            b.configure(fg_color="transparent", text_color="#c9b8e8", font=F_NORMAL)
+            b.configure(
+                fg_color="transparent",
+                text_color=C["text_muted"],
+                font=("Segoe UI", 13)
+            )
+
+        # Set tombol aktif dengan style berbeda
         if key in self._btns:
             self._btns[key].configure(
-                fg_color=C["hijau_aksen"],
-                text_color="#f0e6ff",
-                font=("Segoe UI", 11, "bold"),
+                fg_color=C["primary"],
+                text_color=C["star_white"],
+                font=("Segoe UI", 13, "bold"),
             )
         self._aktif = key
         self._nav(key)
@@ -552,110 +643,130 @@ class Sidebar(ctk.CTkFrame):
 
 
 # ============================================================
-# HALAMAN DASAR
+# HALAMAN DASAR - REDESIGN
 # ============================================================
 
 class HalamanBase(ctk.CTkFrame):
 
     def __init__(self, parent):
-        super().__init__(parent, corner_radius=0, fg_color=C["abu_bg"])
+        super().__init__(parent, corner_radius=0, fg_color=C["bg_main"])
 
     def _header(self, judul: str, subjudul: str = ""):
-        hdr = ctk.CTkFrame(self, fg_color=C["putih"], corner_radius=0, height=70)
+        """Header dengan desain baru - floating style dengan gradient accent"""
+        hdr = ctk.CTkFrame(self, fg_color="transparent", corner_radius=0, height=90)
         hdr.pack(fill="x")
         hdr.pack_propagate(False)
+
+        # Content container dengan padding lebih besar
         inner = ctk.CTkFrame(hdr, fg_color="transparent")
-        inner.pack(side="left", padx=28, pady=12)
-        ctk.CTkLabel(inner, text=judul, font=F_JUDUL, text_color=C["teks"]).pack(anchor="w")
+        inner.pack(side="left", padx=40, pady=20)
+
+        # Judul dengan font lebih besar dan warna highlight
+        ctk.CTkLabel(inner, text=judul, font=F_JUDUL, text_color=C["highlight"]).pack(anchor="w")
+
         if subjudul:
-            ctk.CTkLabel(inner, text=subjudul, font=F_KECIL, text_color=C["teks_sub"]).pack(anchor="w")
-        ctk.CTkFrame(self, height=1, fg_color=C["abu_border"]).pack(fill="x")
+            ctk.CTkLabel(inner, text=subjudul, font=F_NORMAL, text_color=C["text_muted"]).pack(anchor="w", pady=(4, 0))
+
+        # Divider dengan gradient effect (solid primary color line)
+        divider = ctk.CTkFrame(self, height=3, fg_color=C["primary"])
+        divider.pack(fill="x")
 
     def _card(self, parent, **kw):
+        """Card dengan desain baru - elevated surface dengan rounded corners"""
         return ctk.CTkFrame(parent,
-            fg_color=C["putih"],
-            corner_radius=12,
+            fg_color=C["surface"],
+            corner_radius=16,  # Lebih rounded untuk look yang modern
             border_width=1,
-            border_color=C["abu_border"],
+            border_color=C["border_solid"],
             **kw
         )
 
 
 # ============================================================
-# HALAMAN DASHBOARD
+# HALAMAN DASHBOARD - REDESIGN
 # ============================================================
 
 class HalamanDashboard(HalamanBase):
 
     def __init__(self, parent):
         super().__init__(parent)
-        self._header("Dashboard", "Selamat datang, Wicky")
+        self._header("Dashboard", "Selamat datang di Andromeda")
         self._build()
 
     def _build(self):
+        # === ROW 1: STATS CARDS DENGAN LAYOUT BARU ===
         row1 = ctk.CTkFrame(self, fg_color="transparent")
-        row1.pack(fill="x", padx=28, pady=(20, 10))
+        row1.pack(fill="x", padx=40, pady=(30, 15))
 
         self._cards = {}
         specs = [
-            ("total",       "Total Mahasiswa",  C["hijau_hutan"],   "orang terdaftar"),
-            ("sudah_nilai", "Sudah Input Nilai", C["hijau_daun"],  "mahasiswa"),
-            ("rata_ipk",    "Rata-rata IPK",     C["kuning"], "dari 4.00"),
-            ("belum_nilai", "Belum Input Nilai", C["merah"],  "mahasiswa"),
+            ("total",       "Total Mahasiswa",  C["secondary"],   "orang terdaftar"),
+            ("sudah_nilai", "Sudah Input Nilai", C["success"],  "mahasiswa"),
+            ("rata_ipk",    "Rata-rata IPK",     C["warning"], "dari 4.00"),
+            ("belum_nilai", "Belum Input Nilai", C["error"],  "mahasiswa"),
         ]
         for col, (key, label, warna, satuan) in enumerate(specs):
-            card = self._card(row1, height=130)
-            card.grid(row=0, column=col, padx=6, sticky="nsew")
+            card = self._card(row1, height=150)
+            card.grid(row=0, column=col, padx=10, sticky="nsew")
             card.grid_propagate(False)
             row1.columnconfigure(col, weight=1)
 
-            ctk.CTkFrame(card, width=5, fg_color=warna, corner_radius=0
+            # Accent bar di kiri card dengan warna dinamis
+            ctk.CTkFrame(card, width=6, fg_color=warna, corner_radius=8
                 ).place(x=0, y=0, relheight=1)
 
-            ctk.CTkLabel(card, text=label,
-                font=("Segoe UI", 9), text_color=C["teks_sub"]
-            ).place(x=22, y=16)
+            # Label dengan font lebih kecil dan muted
+            ctk.CTkLabel(card, text=label.upper(),
+                font=("Segoe UI", 9, "bold"), text_color=C["text_muted"]
+            ).place(x=26, y=18)
 
+            # Value dengan font besar dan warna accent
             val_lbl = ctk.CTkLabel(card, text="0",
+                font=("Segoe UI", 36, "bold"), text_color=warna)
+            val_lbl.place(x=26, y=45)
 
-                font=("Segoe UI", 32, "bold"), text_color=warna)
-            val_lbl.place(x=22, y=38)
-
+            # Unit text
             ctk.CTkLabel(card, text=satuan,
-                font=("Segoe UI", 8), text_color=C["teks_sub"]
-            ).place(x=24, y=100)
+                font=("Segoe UI", 9), text_color=C["text_muted"]
+            ).place(x=28, y=110)
 
             self._cards[key] = val_lbl
 
+        # === ROW 2: INFO PANELS ===
         row2 = ctk.CTkFrame(self, fg_color="transparent")
-        row2.pack(fill="x", padx=28, pady=(0, 10))
+        row2.pack(fill="x", padx=40, pady=(0, 15))
         row2.columnconfigure(0, weight=2)
         row2.columnconfigure(1, weight=3)
 
-        info_card = self._card(row2, height=140)
-        info_card.grid(row=0, column=0, padx=(0, 6), sticky="nsew")
+        info_card = self._card(row2, height=160)
+        info_card.grid(row=0, column=0, padx=(0, 10), sticky="nsew")
         info_card.grid_propagate(False)
 
-        ctk.CTkLabel(info_card, text="MAHASISWA TERBAIK",
-            font=("Segoe UI", 8, "bold"), text_color=C["teks_sub"]
-        ).place(x=18, y=14)
-        self._lbl_best = ctk.CTkLabel(info_card, text="belum ada data",
-            font=("Segoe UI", 13, "bold"), text_color=C["hijau_hutan"],
-            wraplength=180, justify="left")
-        self._lbl_best.place(x=18, y=34)
+        # Header section
+        ctk.CTkLabel(info_card, text="✦ MAHASISWA TERBAIK",
+            font=("Segoe UI", 10, "bold"), text_color=C["highlight"]
+        ).place(x=24, y=20)
+
+        self._lbl_best = ctk.CTkLabel(info_card, text="Belum ada data",
+            font=("Segoe UI", 14, "bold"), text_color=C["secondary"],
+            wraplength=200, justify="left")
+        self._lbl_best.place(x=24, y=48)
+
         self._lbl_best_ipk = ctk.CTkLabel(info_card, text="",
-            font=("Segoe UI", 10), text_color=C["teks_sub"])
-        self._lbl_best_ipk.place(x=18, y=70)
+            font=("Segoe UI", 11), text_color=C["text_muted"])
+        self._lbl_best_ipk.place(x=24, y=90)
 
-        ctk.CTkFrame(info_card, width=1, fg_color=C["abu_border"]
-            ).place(relx=0.56, y=10, relheight=0.75)
+        # Divider vertical
+        ctk.CTkFrame(info_card, width=2, fg_color=C["border_solid"]
+            ).place(relx=0.55, y=15, relheight=0.8)
 
+        # IPK section
         ctk.CTkLabel(info_card, text="IPK TERTINGGI",
-            font=("Segoe UI", 8), text_color=C["teks_sub"]
-        ).place(relx=0.59, y=14)
+            font=("Segoe UI", 9, "bold"), text_color=C["text_muted"]
+        ).place(relx=0.58, y=20)
         self._lbl_ipk_max = ctk.CTkLabel(info_card, text="0.00",
-            font=("Segoe UI", 20, "bold"), text_color=C["hijau"])
-        self._lbl_ipk_max.place(relx=0.59, y=34)
+            font=("Segoe UI", 24, "bold"), text_color=C["success"])
+        self._lbl_ipk_max.place(relx=0.58, y=48)
 
         ctk.CTkLabel(info_card, text="IPK TERENDAH",
             font=("Segoe UI", 8), text_color=C["teks_sub"]
@@ -1509,61 +1620,93 @@ class HalamanRiwayat(HalamanBase):
 
 
 # ============================================================
-# HALAMAN LOGIN
+# HALAMAN LOGIN - REDESIGN TOTAL
 # ============================================================
 
 class HalamanLogin(ctk.CTkFrame):
 
     def __init__(self, parent, on_login):
-        super().__init__(parent, corner_radius=0, fg_color=C["abu_bg"])
+        super().__init__(parent, corner_radius=0, fg_color=C["bg_main"])
         self._on_login = on_login
         self._build()
 
     def _build(self):
-        kiri = ctk.CTkFrame(self, fg_color=C["hitam_ungu"], corner_radius=0)
-        kiri.place(relx=0, rely=0, relwidth=0.45, relheight=1)
+        # === LAYOUT BARU: Centered Card dengan Cosmic Background ===
 
-        ctk.CTkLabel(kiri, text="Andromeda",
-            font=("Segoe UI", 42, "bold"), text_color="#d4b8ff"
+        # Background frame dengan gradient effect simulation
+        bg_frame = ctk.CTkFrame(self, fg_color="transparent")
+        bg_frame.place(relx=0, rely=0, relwidth=1, relheight=1)
+
+        # === PANEL KIRI - BRANDING DENGAN GRADIENT ===
+        kiri = ctk.CTkFrame(self, fg_color=C["surface"], corner_radius=0)
+        kiri.place(relx=0, rely=0, relwidth=0.5, relheight=1)
+
+        # Decorative circles untuk cosmic effect
+        decor1 = ctk.CTkFrame(kiri, width=300, height=300,
+                              fg_color=C["primary"], corner_radius=150)
+        decor1.place(relx=0.5, rely=0.3, anchor="center")
+
+        decor2 = ctk.CTkFrame(kiri, width=200, height=200,
+                              fg_color=C["secondary"], corner_radius=100)
+        decor2.place(relx=0.5, rely=0.35, anchor="center")
+
+        # Logo di atas decorative elements
+        ctk.CTkLabel(kiri, text="✦ Andromeda",
+            font=("Segoe UI", 48, "bold"), text_color=C["star_white"]
         ).place(relx=0.5, rely=0.38, anchor="center")
 
         ctk.CTkLabel(kiri,
-            text="Informasi Akademik Mahasiswa\nPendidikan Teknik Otomasi Industri dan Robotika.",
-            font=("Segoe UI", 13), text_color="#c9b8e8",
+            text="Sistem Informasi Akademik Mahasiswa\nPendidikan Teknik Otomasi Industri dan Robotika",
+            font=("Segoe UI", 14), text_color=C["highlight"],
             justify="center"
         ).place(relx=0.5, rely=0.52, anchor="center")
 
-        kanan = ctk.CTkFrame(self, fg_color=C["abu_card"], corner_radius=0)
-        kanan.place(relx=0.45, rely=0, relwidth=0.55, relheight=1)
+        # === PANEL KANAN - LOGIN FORM ===
+        kanan = ctk.CTkFrame(self, fg_color=C["bg_secondary"], corner_radius=0)
+        kanan.place(relx=0.5, rely=0, relwidth=0.5, relheight=1)
 
-        card = ctk.CTkFrame(kanan, fg_color="transparent", width=360)
+        # Login card centered dengan elevated design
+        card = ctk.CTkFrame(kanan, fg_color=C["surface"],
+                           width=420, corner_radius=24,
+                           border_width=2, border_color=C["primary"])
         card.place(relx=0.5, rely=0.5, anchor="center")
 
-        ctk.CTkLabel(card, text="Masuk ke Sistem",
-            font=("Segoe UI", 24, "bold"), text_color=C["teks"]
-        ).pack(anchor="w", pady=(0, 4))
-        ctk.CTkLabel(card, text="Masukkan Username Dan Password untuk melanjutkan.",
-            font=F_KECIL, text_color=C["teks_sub"]
-        ).pack(anchor="w", pady=(0, 28))
+        # Header card
+        header_frame = ctk.CTkFrame(card, fg_color="transparent")
+        header_frame.pack(fill="x", padx=40, pady=(40, 20))
 
-        ctk.CTkLabel(card, text="Username", font=F_KECIL,
-            text_color=C["teks_sub"]).pack(anchor="w")
-        self._e_user = _entry(card, placeholder="Username", width=360)
-        self._e_user.pack(pady=(4, 12))
+        ctk.CTkLabel(header_frame, text="Selamat Datang",
+            font=("Segoe UI", 28, "bold"), text_color=C["highlight"]
+        ).pack(anchor="w")
 
-        ctk.CTkLabel(card, text="Password", font=F_KECIL,
-            text_color=C["teks_sub"]).pack(anchor="w")
-        self._e_pass = _entry(card, placeholder="Password", show="*", width=360)
-        self._e_pass.pack(pady=(4, 24))
+        ctk.CTkLabel(header_frame, text="Silakan masuk untuk melanjutkan",
+            font=F_NORMAL, text_color=C["text_muted"]
+        ).pack(anchor="w", pady=(8, 0))
+
+        # Form fields
+        form_frame = ctk.CTkFrame(card, fg_color="transparent")
+        form_frame.pack(fill="x", padx=40, pady=(20, 30))
+
+        ctk.CTkLabel(form_frame, text="Username", font=F_TEBEL,
+            text_color=C["text_main"]).pack(anchor="w")
+        self._e_user = _entry(form_frame, placeholder="Masukkan username", width=340)
+        self._e_user.pack(pady=(8, 20))
+
+        ctk.CTkLabel(form_frame, text="Password", font=F_TEBEL,
+            text_color=C["text_main"]).pack(anchor="w")
+        self._e_pass = _entry(form_frame, placeholder="Masukkan password", show="*", width=340)
+        self._e_pass.pack(pady=(8, 8))
 
         _bind_enter_chain([self._e_user, self._e_pass])
         self._e_pass.bind("<Return>", lambda e: self._login())
 
-        _btn(card, "Masuk", self._login, width=360, height=44).pack()
+        # Login button - full width dengan style baru
+        _btn(card, "Masuk →", self._login, width=340, height=52, style="primary").pack(pady=(10, 10))
 
+        # Error label
         self._lbl_err = ctk.CTkLabel(card, text="",
-            font=F_KECIL, text_color=C["merah"])
-        self._lbl_err.pack(pady=(10, 0))
+            font=F_KECIL, text_color=C["error"])
+        self._lbl_err.pack(pady=(0, 30))
 
         self._e_user.focus_set()
 
@@ -1587,7 +1730,7 @@ class App(ctk.CTk):
         self.title("Sistem Informasi Akademik Mahasiswa")
         self.geometry("1280x740")
         self.minsize(1024, 640)
-        self.configure(fg_color=C["abu_bg"])
+        self.configure(fg_color=C["bg_main"])
         _style_tree()
         self._tampil_login()
 
@@ -1604,7 +1747,8 @@ class App(ctk.CTk):
         self._sidebar = Sidebar(self, self._navigasi)
         self._sidebar.pack(side="left", fill="y")
 
-        self._area = ctk.CTkFrame(self, corner_radius=0, fg_color=C["abu_bg"])
+        # Main content area dengan background baru
+        self._area = ctk.CTkFrame(self, corner_radius=0, fg_color=C["bg_main"])
         self._area.pack(side="left", fill="both", expand=True)
 
         self._dash      = HalamanDashboard(self._area)
