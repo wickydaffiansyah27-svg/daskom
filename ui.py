@@ -49,7 +49,7 @@ C = {
     "coklat_kayu":     "#A0522D",      # Sienna
     "coklat_muda":     "#D2B48C",      # Tan
     "coklat_krem":     "#F5DEB3",      # Wheat
-    
+
     # Warna netral
     "putih":           "#FFFFFF",
     "abu_bg":          "#F0F4EF",      # Light gray with green tint
@@ -502,12 +502,12 @@ class Sidebar(ctk.CTkFrame):
         logo_frame.pack(fill="x", padx=20, pady=(28, 24))
 
         ctk.CTkLabel(logo_frame,
-            text="ARION",
+            text="Andromeda",
             font=("Segoe UI", 20, "bold"),
             text_color="#FFFFFF",
         ).pack(anchor="w")
         ctk.CTkLabel(logo_frame,
-            text="Automation Robotics Information Online Network\nPendidikan Teknik Otomasi Industri dan Robotika",
+            text="Informasi Akademik Mahasiswa\nPendidikan Teknik Otomasi Industri dan Robotika.",
             font=("Segoe UI", 8),
             text_color="#93C5FD",
             wraplength=180,
@@ -605,7 +605,7 @@ class HalamanDashboard(HalamanBase):
 
     def __init__(self, parent):
         super().__init__(parent)
-        self._header("Dashboard", "Selamat datang, Admin")
+        self._header("Dashboard", "Selamat datang, Wicky")
         self._build()
 
     def _build(self):
@@ -648,7 +648,7 @@ class HalamanDashboard(HalamanBase):
         row2.columnconfigure(0, weight=2)
         row2.columnconfigure(1, weight=3)
 
-        info_card = self._card(row2, height=110)
+        info_card = self._card(row2, height=140)
         info_card.grid(row=0, column=0, padx=(0, 6), sticky="nsew")
         info_card.grid_propagate(False)
 
@@ -656,11 +656,12 @@ class HalamanDashboard(HalamanBase):
             font=("Segoe UI", 8, "bold"), text_color=C["teks_sub"]
         ).place(x=18, y=14)
         self._lbl_best = ctk.CTkLabel(info_card, text="belum ada data",
-            font=("Segoe UI", 13, "bold"), text_color=C["hijau_hutan"])
+            font=("Segoe UI", 13, "bold"), text_color=C["hijau_hutan"],
+            wraplength=180, justify="left")
         self._lbl_best.place(x=18, y=34)
         self._lbl_best_ipk = ctk.CTkLabel(info_card, text="",
             font=("Segoe UI", 10), text_color=C["teks_sub"])
-        self._lbl_best_ipk.place(x=18, y=60)
+        self._lbl_best_ipk.place(x=18, y=70)
 
         ctk.CTkFrame(info_card, width=1, fg_color=C["abu_border"]
             ).place(relx=0.56, y=10, relheight=0.75)
@@ -673,7 +674,7 @@ class HalamanDashboard(HalamanBase):
         self._lbl_ipk_max.place(relx=0.59, y=34)
 
         ctk.CTkLabel(info_card, text="IPK TERENDAH",
-            font=("Segoe UI", 8), text_color=C["teks_sub"]  
+            font=("Segoe UI", 8), text_color=C["teks_sub"]
         ).place(relx=0.59, y=66)
         self._lbl_ipk_min = ctk.CTkLabel(info_card, text="0.00",
             font=("Segoe UI", 20, "bold"), text_color=C["merah"])
@@ -1436,14 +1437,14 @@ class HalamanStatistik(HalamanBase):
 
         # --- 4. Column chart distribusi grade ---
         grade_order = ["A", "A-", "B+", "B", "B-", "C+", "C", "D", "E"]
-        grade_data = [(g, data["grade_dist"].get(g, 0)) for g in grade_order
-                      if data["grade_dist"].get(g, 0) > 0]
+        grade_data = [(g, data["grade_dist"].get(g, 0)) for g in grade_order]
+  
         grade_colors = [
             "#059669", "#16A34A", "#22C55E", "#4ADE80", "#86EFAC",
             "#F59E0B", "#D97706", "#EA580C", "#DC2626"
         ]
         Chart.column(self._canvas_grade, grade_data,
-                     colors=grade_colors[:len(grade_data)],
+                     colors=grade_colors,
                      title="Distribusi grade seluruh mata kuliah")
 
         # --- 5. Ringkasan teks ---
@@ -1538,12 +1539,12 @@ class HalamanLogin(ctk.CTkFrame):
         kiri = ctk.CTkFrame(self, fg_color=C["biru_gelap"], corner_radius=0)
         kiri.place(relx=0, rely=0, relwidth=0.45, relheight=1)
 
-        ctk.CTkLabel(kiri, text="ARION",
+        ctk.CTkLabel(kiri, text="Andromeda",
             font=("Segoe UI", 42, "bold"), text_color="#FFFFFF"
         ).place(relx=0.5, rely=0.38, anchor="center")
 
         ctk.CTkLabel(kiri,
-            text="Automation Robotics Information Online Network\nPendidikan Teknik Otomasi Industri dan Robotika",
+            text="Informasi Akademik Mahasiswa\nPendidikan Teknik Otomasi Industri dan Robotika.",
             font=("Segoe UI", 13), text_color="#93C5FD",
             justify="center"
         ).place(relx=0.5, rely=0.52, anchor="center")
@@ -1557,7 +1558,7 @@ class HalamanLogin(ctk.CTkFrame):
         ctk.CTkLabel(card, text="Masuk ke Sistem",
             font=("Segoe UI", 24, "bold"), text_color=C["teks"]
         ).pack(anchor="w", pady=(0, 4))
-        ctk.CTkLabel(card, text="Gunakan akun admin untuk melanjutkan.",
+        ctk.CTkLabel(card, text="Masukkan Username Dan Password untuk melanjutkan.",
             font=F_KECIL, text_color=C["teks_sub"]
         ).pack(anchor="w", pady=(0, 28))
 
