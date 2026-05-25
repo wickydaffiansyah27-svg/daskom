@@ -109,14 +109,14 @@ F_NANO     = ("Segoe UI Variable", 9)
 # HELPERS
 # ============================================================
 
-def _entry(parent, placeholder="", show="", width=280):
+def _entry(parent, placeholder="", show="", width=330):
     """Glass-style pill input with neon border glow."""
     return ctk.CTkEntry(
-        parent, width=width, height=46,
+        parent, width=width, height=60,
         placeholder_text=placeholder,
         show=show,
         font=F_NORMAL,
-        corner_radius=23,
+        corner_radius=15,
         border_width=2,
         border_color=C["border_accent"],
         fg_color=C["surface_elevated"],
@@ -821,7 +821,7 @@ class HalamanDashboard(HalamanBase):
         # ── Spotlight: Best Student hero section ────────────
         spotlight = ctk.CTkFrame(parent,
             fg_color=C["surface"],
-            corner_radius=0, height=148,
+            corner_radius=0, height=237,
             border_width=0)
         spotlight.pack(fill="x", padx=0, pady=0)
         spotlight.pack_propagate(False)
@@ -900,7 +900,7 @@ class HalamanDashboard(HalamanBase):
         # ── Distribution horizontal neon bar ─────────────────
         dist_strip = ctk.CTkFrame(parent,
             fg_color=C["surface_elevated"],
-            corner_radius=0, height=72)
+            corner_radius=0, height=115)
         dist_strip.pack(fill="x")
         dist_strip.pack_propagate(False)
 
@@ -912,11 +912,11 @@ class HalamanDashboard(HalamanBase):
 
         self._dist_labels = {}
         predikat_specs = [
-            ("Cumlaude",        C["primary"],     "CL"),
-            ("Sangat Baik",     C["success"],     "SB"),
+            ("Cumlaude",        C["primary"],     "A"),
+            ("Sangat Baik",     C["success"],     "A-"),
             ("Baik",            C["secondary"],   "B"),
             ("Cukup",           C["warning"],     "C"),
-            ("Perlu Perbaikan", C["error"],       "PP"),
+            ("Perlu Perbaikan", C["error"],       "D/E"),
         ]
         # place them in a horizontal row
         dist_inner = ctk.CTkFrame(dist_strip, fg_color="transparent")
@@ -928,21 +928,21 @@ class HalamanDashboard(HalamanBase):
                 corner_radius=10,
                 border_width=1,
                 border_color=warna,
-                width=110, height=36,
+                width=132, height=43,
             )
             cell.pack(side="left", padx=4)
             cell.pack_propagate(False)
 
             ctk.CTkFrame(cell, width=3, fg_color=warna,
-                         corner_radius=2).place(x=0, y=4, relheight=0.7)
+                         corner_radius=2).place(x=0, y=5, relheight=0.7)
 
             ctk.CTkLabel(cell, text=nama,
-                font=("Segoe UI Variable", 7), text_color=C["text_muted"],
-                wraplength=70,
-            ).place(x=8, y=2)
+                font=("Segoe UI Variable", 8), text_color=C["text_muted"],
+                wraplength=120,
+            ).place(x=10, y=2)
             val_lbl = ctk.CTkLabel(cell, text="0",
-                font=("Segoe UI Variable", 14, "bold"), text_color=warna)
-            val_lbl.place(x=8, y=16)
+                font=("Segoe UI Variable", 16, "bold"), text_color=warna)
+            val_lbl.place(x=10, y=19)
             self._dist_labels[nama] = val_lbl
 
         ctk.CTkFrame(parent, height=1, fg_color=C["border_accent"],
