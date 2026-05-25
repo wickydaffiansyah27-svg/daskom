@@ -2,7 +2,7 @@
 # ui.py  —  GUI Utama
 # Sistem Informasi Akademik Mahasiswa
 # CustomTkinter — ANDROMEDA COMMAND CENTER v4.0
-# Futuristic OS · Asymmetrical Layout · Holographic Interface
+# Sci-Fi · Holographic · Asymmetric · Command Center
 # ============================================================
 
 import customtkinter as ctk
@@ -12,96 +12,96 @@ import db
 import math
 
 # ============================================================
-# TEMA - ANDROMEDA COMMAND CENTER (SPACE STATION 2045)
+# TEMA - ANDROMEDA COMMAND CENTER
 # ============================================================
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
 C = {
-    # === ANDROMEDA GALAXY PALETTE ===
+    # === ANDROMEDA COMMAND CENTER PALETTE ===
     # Deep Space Backgrounds
-    "bg_main":           "#030508",   # Void - deepest black
-    "bg_secondary":      "#060a14",   # Nebula dark
-    "bg_tertiary":       "#0a0f1c",   # Cosmic layer
+    "bg_main":           "#030510",   # Deepest void
+    "bg_secondary":      "#060a1a",   # Near-black nebula
+    "bg_tertiary":       "#080e20",   # Dark cosmic blue
 
-    # Glass Surfaces (floating panels)
-    "surface":           "#0b1221",   # Primary glass
-    "surface_elevated":  "#0f1829",   # Elevated floating
-    "surface_hover":     "#141f35",   # Hover interaction
-    "surface_glass":     "#0c1525",   # Transparent glass
+    # Glass Surfaces (semi-transparent feel)
+    "surface":           "#0a1228",   # Glass dark surface
+    "surface_elevated":  "#0e1835",   # Elevated glass panel
+    "surface_hover":     "#121f42",   # Hover state surface
+    "surface_glass":     "#0c1530",   # Deep glass card
 
-    # Neon Accent Colors - Galaxy Andromeda
-    "primary":           "#8b5cf6",   # Electric violet
-    "primary_glow":      "#a78bfa",   # Violet aura
-    "secondary":         "#06b6d4",   # Cyan electric
-    "secondary_glow":    "#22d3ee",   # Cyan radiance
-    "accent_pink":       "#f472b6",   # Plasma pink
-    "accent_pink_glow":  "#fb7185",   # Pink flare
-    "accent_amber":      "#fbbf24",   # Stellar gold
-    "highlight":         "#c4b5fd",   # Soft lavender
+    # Neon Accent Colors
+    "primary":           "#7c3aed",   # Neon violet - MAIN
+    "primary_glow":      "#9d5ff5",   # Violet glow
+    "secondary":         "#38bdf8",   # Cyan neon
+    "secondary_glow":    "#7dd3fc",   # Cyan glow
+    "accent_pink":       "#ec4899",   # Hot pink neon
+    "accent_pink_glow":  "#f472b6",   # Pink glow
+    "accent_amber":      "#fbbf24",   # Gold neon
+    "highlight":         "#c084fc",   # Lavender highlight
 
     # Text Hierarchy
-    "text_main":         "#f8fafc",   # Crystal white
-    "text_secondary":    "#cbd5e1",   # Silver mist
-    "text_muted":        "#64748b",   # Shadow gray
-    "text_hint":         "#475569",   # Deep shadow
+    "text_main":         "#f5f3ff",   # Pure lavender white
+    "text_secondary":    "#b6b8d6",   # Muted lavender
+    "text_muted":        "#6b7db3",   # Dim blue-gray
+    "text_hint":         "#3d4f7a",   # Very dim hint
 
-    # Borders & Glows
-    "border_solid":      "#1e293b",   # Subtle edge
-    "border_glow":       "#334155",   # Glow edge
-    "border_accent":     "#6d28d9",   # Violet accent
-    "border_cyan":       "#0891b2",   # Cyan accent
+    # Borders & Dividers
+    "border_solid":      "#1a2645",   # Solid subtle border
+    "border_glow":       "#243056",   # Glow border
+    "border_accent":     "#4c3080",   # Violet accent border
+    "border_cyan":       "#164e6b",   # Cyan accent border
 
-    # Status Colors
+    # Status / Semantic
     "success":           "#10b981",
-    "success_bg":        "#022c22",
+    "success_bg":        "#032e20",
     "success_glow":      "#34d399",
     "error":             "#ef4444",
-    "error_bg":          "#2a0a0a",
+    "error_bg":          "#2d0a0a",
     "error_glow":        "#f87171",
     "warning":           "#f59e0b",
-    "warning_bg":        "#2d1f00",
+    "warning_bg":        "#2d1a00",
     "warning_glow":      "#fcd34d",
-    "info":              "#8b5cf6",
-    "info_bg":           "#1e1b4b",
+    "info":              "#7c3aed",
+    "info_bg":           "#1a0a38",
 
-    # Particles
+    # Star / Particle
     "star_white":        "#ffffff",
-    "star_dim":          "#475569",
+    "star_dim":          "#4a5a8a",
 
-    # Legacy aliases
-    "hijau_hutan":       "#0b1221",
-    "hijau_daun":        "#0f1829",
-    "hijau_aksen":       "#06b6d4",
-    "biru":              "#8b5cf6",
-    "biru_muda":         "#060a14",
-    "biru_aksen":        "#c4b5fd",
-    "abu_bg":            "#030508",
-    "abu_card":          "#0b1221",
-    "abu_border":        "#1e293b",
-    "teks":              "#f8fafc",
-    "teks_sub":          "#cbd5e1",
+    # ---- Legacy aliases (backward compat) ----
+    "hijau_hutan":       "#0a1228",
+    "hijau_daun":        "#0e1835",
+    "hijau_aksen":       "#38bdf8",
+    "biru":              "#7c3aed",
+    "biru_muda":         "#060a1a",
+    "biru_aksen":        "#c084fc",
+    "abu_bg":            "#030510",
+    "abu_card":          "#0a1228",
+    "abu_border":        "#1a2645",
+    "teks":              "#f5f3ff",
+    "teks_sub":          "#b6b8d6",
     "teks_input":        "#ffffff",
-    "placeholder":       "#64748b",
-    "putih":             "#0b1221",
-    "hitam_ungu":        "#030508",
+    "placeholder":       "#6b7db3",
+    "putih":             "#0a1228",
+    "hitam_ungu":        "#030510",
     "hijau":             "#10b981",
     "merah":             "#ef4444",
     "kuning":            "#f59e0b",
-    "ungu":              "#8b5cf6",
-    "glow_primary":      "#a78bfa",
-    "glow_secondary":    "#22d3ee",
+    "ungu":              "#7c3aed",
+    "glow_primary":      "#9d5ff5",
+    "glow_secondary":    "#7dd3fc",
 }
 
 # ── Typography ──────────────────────────────────────────────
-F_JUDUL    = ("Segoe UI Variable", 24, "bold")
-F_SUBJUDUL = ("Segoe UI Variable", 15, "bold")
+F_JUDUL    = ("Segoe UI Variable", 22, "bold")
+F_SUBJUDUL = ("Segoe UI Variable", 14, "bold")
 F_NORMAL   = ("Segoe UI Variable", 12)
 F_KECIL    = ("Segoe UI Variable", 10)
 F_MONO     = ("Consolas", 11)
 F_TEBEL    = ("Segoe UI Variable", 12, "bold")
-F_LOGO     = ("Segoe UI Variable", 28, "bold")
+F_LOGO     = ("Segoe UI Variable", 26, "bold")
 F_NANO     = ("Segoe UI Variable", 9)
 
 
@@ -200,14 +200,13 @@ def _label(parent, text, font=None, color=None, anchor="w"):
 
 
 # ============================================================
-# TREEVIEW STYLE — NOVA GALAXY
+# TREEVIEW STYLE — ANDROMEDA
 # ============================================================
 
 def _style_tree():
     s = ttk.Style()
     s.theme_use("clam")
 
-    # Main treeview
     s.configure("App.Treeview",
         background=C["surface"],
         foreground=C["text_main"],
@@ -230,7 +229,6 @@ def _style_tree():
         foreground=[("selected", "#ffffff")],
     )
 
-    # Scrollbar styling
     s.configure("Vertical.TScrollbar",
         background=C["surface_elevated"],
         troughcolor=C["bg_main"],
@@ -503,24 +501,25 @@ class Chart:
 
 
 # ============================================================
-# SIDEBAR — FLOATING MINI DOCK (ASYMMETRICAL DESIGN)
+# TOP NAV BAR — FLOATING HORIZONTAL DOCK (replaces sidebar)
 # ============================================================
 
-class Sidebar(ctk.CTkFrame):
+class TopNavBar(ctk.CTkFrame):
+    """Horizontal floating top navigation — sci-fi command bar."""
 
     MENU = [
-        ("Dashboard",      "dashboard",  "◈"),
-        ("Mahasiswa",      "mahasiswa",  "◉"),
-        ("Input Nilai",    "nilai",      "◆"),
-        ("Statistik",      "statistik",  "◈"),
-        ("Riwayat",        "riwayat",    "◉"),
+        ("⬡", "Dashboard",  "dashboard"),
+        ("◈", "Mahasiswa",  "mahasiswa"),
+        ("◉", "Nilai",      "nilai"),
+        ("◈", "Statistik",  "statistik"),
+        ("◉", "Riwayat",    "riwayat"),
     ]
 
     def __init__(self, parent, on_navigate):
         super().__init__(parent,
-            width=96,
+            height=58,
             corner_radius=0,
-            fg_color="transparent",
+            fg_color=C["bg_secondary"],
         )
         self.pack_propagate(False)
         self._nav  = on_navigate
@@ -529,96 +528,102 @@ class Sidebar(ctk.CTkFrame):
         self._build()
 
     def _build(self):
-        # ── Floating dock container ──────────────────────────
-        dock_frame = ctk.CTkFrame(self,
-            width=80,
-            fg_color=C["surface"],
-            corner_radius=24,
-            border_width=1,
-            border_color=C["border_glow"],
-        )
-        dock_frame.place(relx=0.5, rely=0.5, anchor="center")
+        # Neon bottom border
+        ctk.CTkFrame(self, height=2, fg_color=C["primary"],
+                     corner_radius=0).place(x=0, rely=1.0, y=-2, relwidth=1)
 
-        # ── Top system status indicator ──────────────────────
-        status_chip = ctk.CTkFrame(dock_frame,
-            width=40, height=40,
-            fg_color=C["info_bg"],
-            corner_radius=16,
-            border_width=1,
-            border_color=C["border_accent"],
-        )
-        status_chip.pack(pady=(20, 12))
-        ctk.CTkLabel(status_chip, text="✦",
-            font=("Segoe UI Variable", 18, "bold"),
+        # ── Logo left ───────────────────────────────────────
+        logo_zone = ctk.CTkFrame(self, fg_color="transparent", width=200)
+        logo_zone.pack(side="left", padx=(16, 0), fill="y")
+        logo_zone.pack_propagate(False)
+
+        icon_box = ctk.CTkFrame(logo_zone, width=36, height=36,
+            fg_color=C["info_bg"], corner_radius=10,
+            border_width=1, border_color=C["border_accent"])
+        icon_box.pack(side="left", padx=(0, 10), pady=10)
+        icon_box.pack_propagate(False)
+        ctk.CTkLabel(icon_box, text="✦",
+            font=("Segoe UI Variable", 16, "bold"),
             text_color=C["highlight"],
         ).place(relx=0.5, rely=0.5, anchor="center")
 
-        # ── Navigation buttons (vertical stack) ─────────────
-        nav_container = ctk.CTkFrame(dock_frame, fg_color="transparent")
-        nav_container.pack(fill="x", padx=8, pady=4)
+        titles = ctk.CTkFrame(logo_zone, fg_color="transparent")
+        titles.pack(side="left", fill="y", pady=10)
+        ctk.CTkLabel(titles, text="SIMA",
+            font=("Segoe UI Variable", 16, "bold"),
+            text_color=C["text_main"], anchor="w",
+        ).pack(anchor="w")
+        ctk.CTkLabel(titles, text="Andromeda v4.0",
+            font=F_NANO, text_color=C["secondary"], anchor="w",
+        ).pack(anchor="w")
 
-        for idx, (label, key, icon) in enumerate(self.MENU):
-            btn_frame = ctk.CTkFrame(nav_container,
-                fg_color="transparent", height=64)
-            btn_frame.pack(fill="x", pady=2)
-            btn_frame.pack_propagate(False)
+        # Vertical divider
+        ctk.CTkFrame(self, width=1, fg_color=C["border_glow"],
+                     corner_radius=0).pack(side="left", fill="y", padx=(8, 0), pady=8)
 
+        # ── Nav buttons center ───────────────────────────────
+        nav_zone = ctk.CTkFrame(self, fg_color="transparent")
+        nav_zone.pack(side="left", fill="y", padx=8)
+
+        for icon, label, key in self.MENU:
             b = ctk.CTkButton(
-                btn_frame,
-                text=icon,
-                anchor="center",
-                width=56,
-                height=56,
-                font=("Segoe UI Variable", 20),
+                nav_zone,
+                text=f"{icon}  {label}",
+                width=120,
+                height=40,
+                font=("Segoe UI Variable", 11),
                 fg_color="transparent",
                 hover_color=C["surface_hover"],
-                text_color=C["text_muted"],
-                corner_radius=16,
-                border_width=1,
-                border_color="transparent",
+                text_color=C["text_secondary"],
+                corner_radius=12,
+                border_width=0,
                 command=lambda k=key: self._klik(k),
             )
-            b.pack()
+            b.pack(side="left", padx=3, pady=9)
             self._btns[key] = b
 
-            # Tooltip-style label (appears on hover via placement)
-            ctk.CTkLabel(btn_frame,
-                text=label,
-                font=F_NANO,
-                text_color=C["text_hint"],
-            ).place(x=64, y=20)
-
-        # ── Bottom logout button ─────────────────────────────
-        logout_frame = ctk.CTkFrame(dock_frame, fg_color="transparent")
-        logout_frame.pack(side="bottom", pady=(0, 16))
-
-        ctk.CTkButton(
-            logout_frame,
-            text="⏻",
-            anchor="center",
-            width=48,
-            height=48,
-            font=("Segoe UI Variable", 18),
+        # ── Logout right ─────────────────────────────────────
+        logout_btn = ctk.CTkButton(
+            self,
+            text="⏻  Keluar",
+            width=100,
+            height=34,
+            font=("Segoe UI Variable", 10, "bold"),
             fg_color=C["error_bg"],
             hover_color="#3d0f0f",
             text_color=C["error_glow"],
-            corner_radius=14,
+            corner_radius=12,
             border_width=1,
             border_color=C["error"],
             command=lambda: self._nav("logout"),
-        ).pack()
+        )
+        logout_btn.pack(side="right", padx=16, pady=12)
+
+        # System status indicator right
+        status_frame = ctk.CTkFrame(self, fg_color="transparent")
+        status_frame.pack(side="right", padx=(0, 8), fill="y")
+        ctk.CTkFrame(status_frame, width=8, height=8,
+            fg_color=C["success"], corner_radius=4,
+        ).pack(side="left", padx=(0, 5), pady=25)
+        ctk.CTkLabel(status_frame, text="ONLINE",
+            font=("Segoe UI Variable", 8, "bold"),
+            text_color=C["success"],
+        ).pack(side="left", pady=25)
 
     def _klik(self, key: str):
         for k, b in self._btns.items():
             b.configure(
                 fg_color="transparent",
-                text_color=C["text_muted"],
-                border_color="transparent",
+                text_color=C["text_secondary"],
+                font=("Segoe UI Variable", 11),
+                border_width=0,
             )
         if key in self._btns:
             self._btns[key].configure(
                 fg_color=C["primary"],
                 text_color="#ffffff",
+                font=("Segoe UI Variable", 11, "bold"),
+                border_width=1,
                 border_color=C["highlight"],
             )
         self._aktif = key
@@ -637,38 +642,37 @@ class HalamanBase(ctk.CTkFrame):
     def __init__(self, parent):
         super().__init__(parent, corner_radius=0, fg_color=C["bg_main"])
 
-    def _header(self, judul: str, subjudul: str = ""):
-        """Cinematic header with gradient separator and neon typography."""
-        hdr = ctk.CTkFrame(self, fg_color=C["bg_secondary"], corner_radius=0, height=80)
+    def _page_header(self, icon: str, judul: str, subjudul: str = "",
+                     accent: str = None):
+        """Cinematic inline page title strip — slim, left-anchored."""
+        accent = accent or C["secondary"]
+        hdr = ctk.CTkFrame(self, fg_color=C["bg_secondary"],
+                           corner_radius=0, height=56)
         hdr.pack(fill="x")
         hdr.pack_propagate(False)
 
+        # Accent left stripe
+        ctk.CTkFrame(hdr, width=4, fg_color=accent,
+                     corner_radius=0).pack(side="left", fill="y")
+
         inner = ctk.CTkFrame(hdr, fg_color="transparent")
-        inner.pack(side="left", padx=36, pady=0)
-        inner.pack_configure(pady=0)
+        inner.pack(side="left", padx=20, fill="y")
 
-        # Accent dot
-        dot_row = ctk.CTkFrame(inner, fg_color="transparent")
-        dot_row.pack(anchor="w", pady=(18, 0))
-        ctk.CTkFrame(dot_row, width=8, height=8,
-            fg_color=C["secondary"], corner_radius=4
-        ).pack(side="left", padx=(0, 8))
-        ctk.CTkLabel(dot_row, text=subjudul.upper() if subjudul else "",
-            font=("Segoe UI Variable", 9, "bold"),
-            text_color=C["secondary"], anchor="w",
-        ).pack(side="left")
+        ctk.CTkLabel(inner,
+            text=f"{icon}  {judul}",
+            font=("Segoe UI Variable", 16, "bold"),
+            text_color=C["text_main"], anchor="w",
+        ).pack(anchor="w", pady=(10, 0))
 
-        ctk.CTkLabel(inner, text=judul,
-            font=F_JUDUL, text_color=C["text_main"], anchor="w",
-        ).pack(anchor="w", pady=(2, 14))
+        if subjudul:
+            ctk.CTkLabel(inner,
+                text=subjudul,
+                font=F_NANO, text_color=C["text_muted"], anchor="w",
+            ).pack(anchor="w", pady=(0, 8))
 
-        # Neon divider
-        div_frame = ctk.CTkFrame(self, height=2, fg_color="transparent",
-                                 corner_radius=0)
-        div_frame.pack(fill="x")
-        ctk.CTkFrame(div_frame, height=2,
-            fg_color=C["primary"], corner_radius=1,
-        ).pack(fill="x", padx=0)
+        # Bottom glow line
+        ctk.CTkFrame(self, height=1, fg_color=C["border_glow"],
+                     corner_radius=0).pack(fill="x")
 
     def _card(self, parent, **kw):
         """Glass-morphism floating card."""
@@ -693,260 +697,453 @@ class HalamanBase(ctk.CTkFrame):
 
 
 # ============================================================
-# HALAMAN DASHBOARD — NOVA GALAXY REDESIGN
+# HALAMAN DASHBOARD — ANDROMEDA COMMAND CENTER LAYOUT
+# Total redesign: asymmetric, cinematic, sci-fi
 # ============================================================
 
 class HalamanDashboard(HalamanBase):
 
     def __init__(self, parent):
         super().__init__(parent)
-        self._build_cinematic_header()
         self._build()
 
-    def _build_cinematic_header(self):
-        """Large cinematic header with gradient overlay."""
-        header = ctk.CTkFrame(self, fg_color="transparent", height=100)
-        header.pack(fill="x")
-        header.pack_propagate(False)
+    def _build(self):
+        # ── Cinematic full-width header banner ──────────────
+        self._build_hero()
 
-        # Gradient background strip
-        gradient = tk.Canvas(header, bg=C["bg_secondary"], highlightthickness=0, height=100)
-        gradient.place(relx=0, rely=0, relwidth=1, relheight=1)
+        # ── Main body: two-pane asymmetric layout ───────────
+        body = ctk.CTkFrame(self, fg_color="transparent")
+        body.pack(fill="both", expand=True, padx=0, pady=0)
 
-        # Animated gradient line
-        gradient.create_rectangle(0, 0, 2000, 2, fill=C["primary"], outline="")
-        gradient.create_rectangle(0, 98, 2000, 2, fill=C["secondary"], outline="")
+        # Left column: 65% — analytics + terminal
+        left_col = ctk.CTkFrame(body, fg_color="transparent")
+        left_col.place(relx=0, rely=0, relwidth=0.64, relheight=1)
 
-        # Title area
-        title_frame = ctk.CTkFrame(header, fg_color="transparent")
-        title_frame.place(x=40, y=20)
+        # Right column: 35% — vertical side panel
+        right_col = ctk.CTkFrame(body, fg_color=C["bg_secondary"],
+                                  corner_radius=0)
+        right_col.place(relx=0.64, rely=0, relwidth=0.36, relheight=1)
+        ctk.CTkFrame(right_col, width=1, fg_color=C["border_accent"],
+                     corner_radius=0).place(x=0, y=0, relheight=1)
 
-        ctk.CTkLabel(title_frame,
-            text="ANDROMEDA COMMAND CENTER",
-            font=("Segoe UI Variable", 28, "bold"),
+        self._build_left(left_col)
+        self._build_right(right_col)
+
+        self.refresh()
+
+    def _build_hero(self):
+        """Full-width cinematic hero banner with stats strip."""
+        hero = ctk.CTkFrame(self, fg_color=C["surface"], corner_radius=0, height=110)
+        hero.pack(fill="x")
+        hero.pack_propagate(False)
+
+        # Starfield canvas behind hero
+        stars = tk.Canvas(hero, bg=C["surface"], highlightthickness=0)
+        stars.place(relx=0, rely=0, relwidth=1, relheight=1)
+        self._paint_stars_hero(stars)
+
+        # Top purple glow line
+        ctk.CTkFrame(hero, height=3, fg_color=C["primary"],
+                     corner_radius=0).place(x=0, y=0, relwidth=1)
+
+        # Left: system title
+        title_zone = ctk.CTkFrame(hero, fg_color="transparent")
+        title_zone.place(x=28, y=14)
+
+        ctk.CTkLabel(title_zone,
+            text="ANDROMEDA  COMMAND  CENTER",
+            font=("Segoe UI Variable", 9, "bold"),
+            text_color=C["secondary"],
+            anchor="w",
+        ).pack(anchor="w")
+        ctk.CTkLabel(title_zone,
+            text="Sistem Informasi Akademik",
+            font=("Segoe UI Variable", 26, "bold"),
             text_color=C["text_main"],
             anchor="w",
         ).pack(anchor="w")
+        ctk.CTkLabel(title_zone,
+            text="Pendidikan Teknik Otomasi Industri & Robotika  ·  Mission Control Dashboard",
+            font=F_NANO, text_color=C["text_muted"],
+        ).pack(anchor="w")
 
-        ctk.CTkLabel(title_frame,
-            text="Sistem Informasi Akademik · Real-time Monitoring",
-            font=F_KECIL,
-            text_color=C["secondary"],
-            anchor="w",
-        ).pack(anchor="w", pady=(4, 0))
-
-        # System status badge (top right)
-        status_badge = ctk.CTkFrame(header,
-            fg_color=C["info_bg"],
-            corner_radius=20,
-            border_width=1,
-            border_color=C["border_accent"],
-            width=140, height=32)
-        status_badge.place(relx=1.0, x=-40, y=34, anchor="ne")
-
-        ctk.CTkLabel(status_badge,
-            text="● SYSTEM ONLINE",
-            font=("Segoe UI Variable", 9, "bold"),
-            text_color=C["secondary"],
-        ).place(relx=0.5, rely=0.5, anchor="center")
-
-    def _build(self):
-        # Main content area with asymmetrical grid
-        main_container = ctk.CTkFrame(self, fg_color="transparent")
-        main_container.pack(fill="both", expand=True, padx=24, pady=(10, 20))
-
-        # LEFT COLUMN - Hero section + Stats (wider)
-        left_col = ctk.CTkFrame(main_container, fg_color="transparent")
-        left_col.pack(side="left", fill="both", expand=True, padx=(0, 8))
-
-        # RIGHT COLUMN - Vertical analytics panel (narrower)
-        right_col = ctk.CTkFrame(main_container, fg_color="transparent")
-        right_col.pack(side="right", fill="y", padx=(8, 0))
-        right_col.pack_propagate(False)
-
-        # === HERO SECTION - Best Student Spotlight ===
-        hero_card = ctk.CTkFrame(left_col,
-            fg_color=C["surface"],
-            corner_radius=28,
-            border_width=2,
-            border_color=C["border_accent"],
-            height=180)
-        hero_card.pack(fill="x", pady=(0, 12))
-        hero_card.pack_propagate(False)
-
-        # Glowing corner accents
-        ctk.CTkFrame(hero_card, width=40, height=3,
-            fg_color=C["primary"], corner_radius=2).place(x=0, y=0)
-        ctk.CTkFrame(hero_card, width=3, height=40,
-            fg_color=C["primary"], corner_radius=2).place(x=0, y=0)
-
-        ctk.CTkLabel(hero_card,
-            text="⬥ TOP PERFORMER",
-            font=("Segoe UI Variable", 10, "bold"),
-            text_color=C["accent_pink"],
-        ).place(x=24, y=16)
-
-        self._lbl_best = ctk.CTkLabel(hero_card, text="—",
-            font=("Segoe UI Variable", 26, "bold"),
-            text_color=C["highlight"],
-            wraplength=400, justify="left")
-        self._lbl_best.place(x=24, y=42)
-
-        self._lbl_best_ipk = ctk.CTkLabel(hero_card, text="",
-            font=("Segoe UI Variable", 14),
-            text_color=C["text_muted"])
-        self._lbl_best_ipk.place(x=24, y=82)
-
-        # IPK Max/Min display
-        ipk_frame = ctk.CTkFrame(hero_card, fg_color="transparent")
-        ipk_frame.place(relx=1.0, x=-28, y=24, anchor="ne")
-
-        ctk.CTkLabel(ipk_frame,
-            text="IPK TERTINGGI",
-            font=F_NANO,
-            text_color=C["text_hint"],
-        ).pack(anchor="e")
-        self._lbl_ipk_max = ctk.CTkLabel(ipk_frame, text="0.00",
-            font=("Segoe UI Variable", 32, "bold"),
-            text_color=C["success"])
-        self._lbl_ipk_max.pack(anchor="e")
-
-        ctk.CTkLabel(ipk_frame,
-            text="IPK TERENDAH",
-            font=F_NANO,
-            text_color=C["text_hint"],
-        ).pack(anchor="e", pady=(8, 0))
-        self._lbl_ipk_min = ctk.CTkLabel(ipk_frame, text="0.00",
-            font=("Segoe UI Variable", 24, "bold"),
-            text_color=C["error"])
-        self._lbl_ipk_min.pack(anchor="e")
-
-        # === HORIZONTAL SCROLL STATS ===
-        stats_scroll_frame = ctk.CTkFrame(left_col, fg_color="transparent")
-        stats_scroll_frame.pack(fill="x", pady=(0, 12))
+        # Right: four glowing metric chips in a row
+        chips_zone = ctk.CTkFrame(hero, fg_color="transparent")
+        chips_zone.place(relx=1.0, x=-24, y=16, anchor="ne")
 
         self._cards = {}
-        specs = [
-            ("total",       "TOTAL",         C["secondary"],    "◈"),
-            ("sudah_nilai", "DINILAI",       C["success"],      "◉"),
-            ("rata_ipk",    "RATA IPK",      C["highlight"],    "✦"),
-            ("belum_nilai", "BELUM DINILAI", C["accent_pink"],  "◆"),
+        chip_specs = [
+            ("total",       "TOTAL",        "◈", C["secondary"]),
+            ("sudah_nilai", "DINILAI",       "◉", C["success"]),
+            ("rata_ipk",    "RATA IPK",      "✦", C["highlight"]),
+            ("belum_nilai", "PENDING",       "◈", C["accent_pink"]),
         ]
-
-        for key, label, warna, icon in specs:
-            stat_card = ctk.CTkFrame(stats_scroll_frame,
-                fg_color=C["surface_glass"],
-                corner_radius=20,
-                border_width=1,
-                border_color=C["border_glow"],
-                width=180, height=110)
-            stat_card.pack(side="left", padx=6)
-            stat_card.pack_propagate(False)
-
-            # Icon badge
-            icon_chip = ctk.CTkFrame(stat_card,
-                width=44, height=44,
+        for key, label, icon, warna in chip_specs:
+            chip = ctk.CTkFrame(chips_zone,
                 fg_color=C["surface_elevated"],
-                corner_radius=14,
+                corner_radius=16,
                 border_width=1,
-                border_color=warna)
-            icon_chip.place(x=16, y=14)
-            ctk.CTkLabel(icon_chip, text=icon,
-                font=("Segoe UI Variable", 18),
-                text_color=warna).place(relx=0.5, rely=0.5, anchor="center")
+                border_color=warna,
+                width=108, height=78,
+            )
+            chip.pack(side="left", padx=5)
+            chip.pack_propagate(False)
 
-            # Label
-            ctk.CTkLabel(stat_card, text=label,
-                font=("Segoe UI Variable", 8, "bold"),
-                text_color=C["text_muted"],
-            ).place(x=16, y=66)
-
-            # Value
-            val_lbl = ctk.CTkLabel(stat_card, text="0",
-                font=("Segoe UI Variable", 28, "bold"),
-                text_color=warna)
-            val_lbl.place(x=16, y=80)
-
+            ctk.CTkLabel(chip, text=icon,
+                font=("Segoe UI Variable", 10),
+                text_color=warna,
+            ).place(x=10, y=8)
+            ctk.CTkLabel(chip, text=label,
+                font=("Segoe UI Variable", 7, "bold"),
+                text_color=C["text_hint"],
+            ).place(x=10, y=22)
+            val_lbl = ctk.CTkLabel(chip, text="—",
+                font=("Segoe UI Variable", 24, "bold"),
+                text_color=warna,
+            )
+            val_lbl.place(x=10, y=38)
             self._cards[key] = val_lbl
 
-        # === ACTIVITY TERMINAL (Bottom section) ===
-        terminal_card = ctk.CTkFrame(left_col,
+    def _paint_stars_hero(self, canvas):
+        import random
+        random.seed(99)
+        for _ in range(80):
+            x = random.randint(0, 1400)
+            y = random.randint(0, 110)
+            r = random.choice([1, 1, 1, 2])
+            col = random.choice(["#ffffff", "#b6b8d6", "#2b3a67",
+                                  "#4c3080", "#164e6b"])
+            canvas.create_oval(x-r, y-r, x+r, y+r, fill=col, outline="")
+
+    def _build_left(self, parent):
+        """Left panel: spotlight best student + live terminal feed."""
+
+        # ── Spotlight: Best Student hero section ────────────
+        spotlight = ctk.CTkFrame(parent,
             fg_color=C["surface"],
-            corner_radius=24,
-            border_width=1,
-            border_color=C["border_glow"])
-        terminal_card.pack(fill="both", expand=True)
-
-        # Terminal header
-        term_hdr = ctk.CTkFrame(terminal_card, fg_color="transparent")
-        term_hdr.pack(fill="x", padx=20, pady=(16, 8))
-
-        ctk.CTkLabel(term_hdr,
-            text="◉ LIVE ACTIVITY TERMINAL",
-            font=("Segoe UI Variable", 11, "bold"),
-            text_color=C["secondary"],
-        ).pack(side="left")
-
-        ctk.CTkLabel(term_hdr,
-            text="last 10 operations",
-            font=F_NANO,
-            text_color=C["text_hint"],
-        ).pack(side="right", pady=4)
-
-        # Terminal display (monospace style)
-        self._riwayat_frame = ctk.CTkScrollableFrame(
-            terminal_card,
-            fg_color=C["surface_elevated"],
-            corner_radius=12,
+            corner_radius=0, height=148,
             border_width=0)
-        self._riwayat_frame.pack(fill="both", expand=True, padx=16, pady=(0, 16))
+        spotlight.pack(fill="x", padx=0, pady=0)
+        spotlight.pack_propagate(False)
 
-        # === RIGHT COLUMN - Vertical Analytics ===
-        # Distribution panel
-        dist_card = ctk.CTkFrame(right_col,
-            fg_color=C["surface"],
-            corner_radius=24,
-            border_width=1,
-            border_color=C["border_glow"],
-            width=220)
-        dist_card.pack(fill="y", expand=True)
-        dist_card.pack_propagate(False)
+        # Diagonal accent stripe (simulated with canvas)
+        sp_canvas = tk.Canvas(spotlight, bg=C["surface"],
+                              highlightthickness=0)
+        sp_canvas.place(relx=0, rely=0, relwidth=1, relheight=1)
+        # Draw accent polygon
+        sp_canvas.after(100, lambda: self._draw_spotlight_bg(sp_canvas))
 
-        ctk.CTkLabel(dist_card,
-            text="◇ GRADE DISTRIBUTION",
-            font=("Segoe UI Variable", 10, "bold"),
-            text_color=C["primary"],
-        ).place(x=18, y=16)
+        # "SPOTLIGHT" tag
+        tag_frame = ctk.CTkFrame(spotlight,
+            fg_color=C["primary"], corner_radius=6,
+            width=100, height=22)
+        tag_frame.place(x=20, y=16)
+        tag_frame.pack_propagate(False)
+        ctk.CTkLabel(tag_frame, text="⬡  SPOTLIGHT",
+            font=("Segoe UI Variable", 8, "bold"),
+            text_color="#ffffff",
+        ).place(relx=0.5, rely=0.5, anchor="center")
+
+        ctk.CTkLabel(spotlight,
+            text="MAHASISWA TERBAIK",
+            font=("Segoe UI Variable", 8, "bold"),
+            text_color=C["text_hint"],
+        ).place(x=20, y=46)
+
+        self._lbl_best = ctk.CTkLabel(spotlight,
+            text="—",
+            font=("Segoe UI Variable", 20, "bold"),
+            text_color=C["highlight"],
+        )
+        self._lbl_best.place(x=20, y=62)
+
+        self._lbl_best_ipk = ctk.CTkLabel(spotlight,
+            text="",
+            font=F_KECIL,
+            text_color=C["text_muted"],
+        )
+        self._lbl_best_ipk.place(x=20, y=96)
+
+        # IPK max/min badges
+        max_frame = ctk.CTkFrame(spotlight,
+            fg_color=C["success_bg"], corner_radius=12,
+            border_width=1, border_color=C["success"],
+            width=100, height=58)
+        max_frame.place(relx=0.38, y=24)
+        max_frame.pack_propagate(False)
+        ctk.CTkLabel(max_frame, text="IPK MAX",
+            font=F_NANO, text_color=C["text_hint"],
+        ).place(x=10, y=6)
+        self._lbl_ipk_max = ctk.CTkLabel(max_frame, text="0.00",
+            font=("Segoe UI Variable", 20, "bold"),
+            text_color=C["success"])
+        self._lbl_ipk_max.place(x=10, y=24)
+
+        min_frame = ctk.CTkFrame(spotlight,
+            fg_color=C["error_bg"], corner_radius=12,
+            border_width=1, border_color=C["error"],
+            width=100, height=58)
+        min_frame.place(relx=0.53, y=24)
+        min_frame.pack_propagate(False)
+        ctk.CTkLabel(min_frame, text="IPK MIN",
+            font=F_NANO, text_color=C["text_hint"],
+        ).place(x=10, y=6)
+        self._lbl_ipk_min = ctk.CTkLabel(min_frame, text="0.00",
+            font=("Segoe UI Variable", 20, "bold"),
+            text_color=C["error"])
+        self._lbl_ipk_min.place(x=10, y=24)
+
+        # Bottom glow separator
+        ctk.CTkFrame(parent, height=1, fg_color=C["border_glow"],
+                     corner_radius=0).pack(fill="x")
+
+        # ── Distribution horizontal neon bar ─────────────────
+        dist_strip = ctk.CTkFrame(parent,
+            fg_color=C["surface_elevated"],
+            corner_radius=0, height=72)
+        dist_strip.pack(fill="x")
+        dist_strip.pack_propagate(False)
+
+        ctk.CTkLabel(dist_strip,
+            text="  ◉  DISTRIBUSI PREDIKAT",
+            font=("Segoe UI Variable", 8, "bold"),
+            text_color=C["secondary"],
+        ).place(x=16, y=8)
 
         self._dist_labels = {}
         predikat_specs = [
-            ("Cumlaude",        C["primary"]),
-            ("Sangat Baik",     C["success"]),
-            ("Baik",            C["secondary"]),
-            ("Cukup",           C["warning"]),
-            ("Perlu Perbaikan", C["error"]),
+            ("Cumlaude",        C["primary"],     "CL"),
+            ("Sangat Baik",     C["success"],     "SB"),
+            ("Baik",            C["secondary"],   "B"),
+            ("Cukup",           C["warning"],     "C"),
+            ("Perlu Perbaikan", C["error"],       "PP"),
         ]
+        # place them in a horizontal row
+        dist_inner = ctk.CTkFrame(dist_strip, fg_color="transparent")
+        dist_inner.place(x=16, y=28, relwidth=0.95)
 
-        for idx, (nama, warna) in enumerate(predikat_specs):
-            y_pos = 48 + idx * 38
+        for nama, warna, short in predikat_specs:
+            cell = ctk.CTkFrame(dist_inner,
+                fg_color=C["surface"],
+                corner_radius=10,
+                border_width=1,
+                border_color=warna,
+                width=110, height=36,
+            )
+            cell.pack(side="left", padx=4)
+            cell.pack_propagate(False)
 
-            ctk.CTkLabel(dist_card, text=nama,
+            ctk.CTkFrame(cell, width=3, fg_color=warna,
+                         corner_radius=2).place(x=0, y=4, relheight=0.7)
+
+            ctk.CTkLabel(cell, text=nama,
+                font=("Segoe UI Variable", 7), text_color=C["text_muted"],
+                wraplength=70,
+            ).place(x=8, y=2)
+            val_lbl = ctk.CTkLabel(cell, text="0",
+                font=("Segoe UI Variable", 14, "bold"), text_color=warna)
+            val_lbl.place(x=8, y=16)
+            self._dist_labels[nama] = val_lbl
+
+        ctk.CTkFrame(parent, height=1, fg_color=C["border_accent"],
+                     corner_radius=0).pack(fill="x")
+
+        # ── Live terminal activity feed ───────────────────────
+        term_header = ctk.CTkFrame(parent,
+            fg_color=C["bg_tertiary"], corner_radius=0, height=36)
+        term_header.pack(fill="x")
+        term_header.pack_propagate(False)
+
+        ctk.CTkFrame(term_header, width=4, fg_color=C["success"],
+                     corner_radius=0).place(x=0, y=0, relheight=1)
+        ctk.CTkLabel(term_header,
+            text="  >_  LIVE ACTIVITY TERMINAL  ·  10 OPERASI TERAKHIR",
+            font=("Consolas", 9, "bold"),
+            text_color=C["success"],
+        ).place(x=12, rely=0.5, anchor="w")
+
+        # Blinking dot
+        self._blink_dot = ctk.CTkFrame(term_header, width=8, height=8,
+            fg_color=C["accent_pink"], corner_radius=4)
+        self._blink_dot.place(relx=1.0, x=-16, rely=0.5, anchor="center")
+        self._blink_state = True
+        self._blink()
+
+        # Terminal body
+        term_body = ctk.CTkFrame(parent,
+            fg_color="#050a14",
+            corner_radius=0)
+        term_body.pack(fill="both", expand=True)
+
+        # Column headers — monospace
+        col_hdr = ctk.CTkFrame(term_body,
+            fg_color="#080f1e", corner_radius=0, height=26)
+        col_hdr.pack(fill="x")
+        col_hdr.pack_propagate(False)
+        for txt, wid in [("  TIMESTAMP", 180), ("  ACTION", 90), ("  DETAIL", 0)]:
+            ctk.CTkLabel(col_hdr, text=txt, width=wid,
+                font=("Consolas", 8, "bold"),
+                text_color=C["text_hint"], anchor="w",
+            ).pack(side="left")
+
+        self._riwayat_frame = ctk.CTkScrollableFrame(
+            term_body, fg_color="transparent",
+            scrollbar_button_color=C["surface_elevated"],
+            scrollbar_button_hover_color=C["primary"])
+        self._riwayat_frame.pack(fill="both", expand=True, padx=0, pady=0)
+
+    def _blink(self):
+        """Animate blinking status dot."""
+        try:
+            col = C["accent_pink"] if self._blink_state else "#050a14"
+            self._blink_dot.configure(fg_color=col)
+            self._blink_state = not self._blink_state
+            self.after(800, self._blink)
+        except Exception:
+            pass
+
+    def _draw_spotlight_bg(self, canvas):
+        canvas.update_idletasks()
+        w = canvas.winfo_width() or 900
+        h = canvas.winfo_height() or 148
+        # Subtle diagonal gradient strips
+        canvas.create_polygon(
+            w*0.30, 0, w*0.45, 0, w*0.35, h, w*0.18, h,
+            fill="#0e1430", outline=""
+        )
+        canvas.create_polygon(
+            w*0.68, 0, w*0.75, 0, w*0.70, h, w*0.62, h,
+            fill="#0a1028", outline=""
+        )
+
+    def _build_right(self, parent):
+        """Right vertical analytics panel."""
+        # Panel header
+        rh = ctk.CTkFrame(parent, fg_color=C["bg_secondary"],
+                           corner_radius=0, height=40)
+        rh.pack(fill="x")
+        rh.pack_propagate(False)
+
+        ctk.CTkLabel(rh,
+            text="  ✦  ANALYTICS PANEL",
+            font=("Segoe UI Variable", 9, "bold"),
+            text_color=C["primary"],
+        ).place(x=16, rely=0.5, anchor="w")
+
+        # System info widget
+        sys_card = ctk.CTkFrame(parent,
+            fg_color=C["surface"],
+            corner_radius=0, height=72,
+            border_width=0)
+        sys_card.pack(fill="x")
+        sys_card.pack_propagate(False)
+
+        ctk.CTkFrame(sys_card, height=1,
+            fg_color=C["border_glow"]).pack(fill="x")
+
+        sys_inner = ctk.CTkFrame(sys_card, fg_color="transparent")
+        sys_inner.pack(fill="x", padx=16, pady=8)
+
+        ctk.CTkLabel(sys_inner,
+            text="ACADEMIC YEAR 2024/2025",
+            font=("Segoe UI Variable", 7, "bold"),
+            text_color=C["text_hint"],
+        ).pack(anchor="w")
+        ctk.CTkLabel(sys_inner,
+            text="Semester Genap  ·  Active Session",
+            font=("Segoe UI Variable", 11, "bold"),
+            text_color=C["text_main"],
+        ).pack(anchor="w")
+        ctk.CTkLabel(sys_inner,
+            text="Prodi: Otomasi Industri & Robotika",
+            font=F_NANO, text_color=C["text_muted"],
+        ).pack(anchor="w")
+
+        # Separator
+        ctk.CTkFrame(parent, height=1,
+            fg_color=C["border_accent"]).pack(fill="x")
+
+        # Quick stat vertical stack
+        ctk.CTkLabel(parent,
+            text="  ◈  QUICK METRICS",
+            font=("Segoe UI Variable", 8, "bold"),
+            text_color=C["secondary"],
+        ).pack(anchor="w", padx=0, pady=(10, 4))
+
+        scroll_right = ctk.CTkScrollableFrame(parent,
+            fg_color="transparent",
+            scrollbar_button_color=C["surface_elevated"])
+        scroll_right.pack(fill="both", expand=True, padx=0, pady=0)
+
+        # Vertical IPK gauge-style cards
+        ipk_metrics = [
+            ("Cumlaude  ≥ 3.75",  "CL", C["primary"]),
+            ("Sangat Baik ≥ 3.50", "SB", C["success"]),
+            ("Baik  ≥ 3.00",       "B",  C["secondary"]),
+            ("Cukup  ≥ 2.50",      "C",  C["warning"]),
+            ("Perlu Perbaikan",     "PP", C["error"]),
+        ]
+        self._right_dist_labels = {}
+        for label, short, warna in ipk_metrics:
+            mcard = ctk.CTkFrame(scroll_right,
+                fg_color=C["surface"],
+                corner_radius=14,
+                border_width=1,
+                border_color=C["border_solid"],
+                height=60,
+            )
+            mcard.pack(fill="x", padx=12, pady=3)
+            mcard.pack_propagate(False)
+
+            # Left neon bar
+            ctk.CTkFrame(mcard, width=3, fg_color=warna,
+                         corner_radius=2).place(x=0, y=6, relheight=0.75)
+
+            ctk.CTkLabel(mcard, text=short,
+                font=("Segoe UI Variable", 9, "bold"),
+                text_color=warna, width=28,
+            ).place(x=10, y=8)
+
+            ctk.CTkLabel(mcard, text=label,
                 font=("Segoe UI Variable", 8),
                 text_color=C["text_muted"],
-            ).place(x=18, y=y_pos)
+                wraplength=130, anchor="w",
+            ).place(x=40, y=8)
 
-            lbl_val = ctk.CTkLabel(dist_card, text="0",
-                font=("Segoe UI Variable", 18, "bold"),
+            rv = ctk.CTkLabel(mcard, text="0",
+                font=("Segoe UI Variable", 22, "bold"),
                 text_color=warna)
-            lbl_val.place(relx=1.0, x=-18, y=y_pos, anchor="ne")
+            rv.place(relx=1.0, x=-14, rely=0.5, anchor="e")
+            self._right_dist_labels[label.split()[0].replace("≥", "").strip()] = rv
 
-            # Progress bar background
-            ctk.CTkFrame(dist_card,
-                width=120, height=4,
-                fg_color=C["surface_elevated"],
-                corner_radius=2).place(x=18, y=y_pos + 22)
+        # System health
+        ctk.CTkFrame(parent, height=1,
+            fg_color=C["border_glow"]).pack(fill="x", pady=(6, 0))
 
-        self.refresh()
+        health_card = ctk.CTkFrame(parent,
+            fg_color=C["surface"], corner_radius=0, height=80)
+        health_card.pack(fill="x", side="bottom")
+        health_card.pack_propagate(False)
+
+        ctk.CTkLabel(health_card,
+            text="  ◉  SYSTEM STATUS",
+            font=("Segoe UI Variable", 8, "bold"),
+            text_color=C["text_hint"],
+        ).place(x=0, y=6)
+
+        for i, (sys_label, sys_val, col) in enumerate([
+            ("Database", "Connected", C["success"]),
+            ("Records", "Active", C["secondary"]),
+        ]):
+            ctk.CTkLabel(health_card,
+                text=f"  {sys_label}",
+                font=F_NANO, text_color=C["text_muted"],
+            ).place(x=0, y=28 + i * 22)
+            ctk.CTkLabel(health_card,
+                text=f"● {sys_val}",
+                font=("Segoe UI Variable", 8, "bold"),
+                text_color=col,
+            ).place(relx=1.0, x=-16, y=28 + i * 22, anchor="e")
 
     def refresh(self):
         stat  = db.statistik()
@@ -962,7 +1159,7 @@ class HalamanDashboard(HalamanBase):
 
         if stat["terbaik"] != "-":
             self._lbl_best.configure(text=stat["terbaik"])
-            self._lbl_best_ipk.configure(text=f"IPK {stat['terbaik_ipk']:.2f}")
+            self._lbl_best_ipk.configure(text=f"IPK  {stat['terbaik_ipk']:.2f}")
         else:
             self._lbl_best.configure(text="belum ada data")
             self._lbl_best_ipk.configure(text="")
@@ -985,6 +1182,20 @@ class HalamanDashboard(HalamanBase):
         for nama, lbl in self._dist_labels.items():
             lbl.configure(text=str(dist.get(nama, 0)))
 
+        # Update right panel
+        right_map = {
+            "Cumlaude":  "Cumlaude",
+            "Sangat":    "Sangat Baik",
+            "Baik":      "Baik",
+            "Cukup":     "Cukup",
+            "Perlu":     "Perlu Perbaikan",
+        }
+        for short_key, full_key in right_map.items():
+            if short_key in self._right_dist_labels:
+                self._right_dist_labels[short_key].configure(
+                    text=str(dist.get(full_key, 0)))
+
+        # Terminal feed
         aksi_warna = {
             "TAMBAH": C["success"],
             "HAPUS":  C["error"],
@@ -993,25 +1204,40 @@ class HalamanDashboard(HalamanBase):
         }
         for w in self._riwayat_frame.winfo_children():
             w.destroy()
-        for h in db.get_riwayat()[:10]:
+
+        for idx, h in enumerate(db.get_riwayat()[:10]):
             row = ctk.CTkFrame(self._riwayat_frame,
-                fg_color=C["surface_elevated"],
-                corner_radius=10, height=38)
-            row.pack(fill="x", pady=2)
+                fg_color="#060b18" if idx % 2 == 0 else "#040912",
+                corner_radius=0, height=32)
+            row.pack(fill="x", pady=0)
             row.pack_propagate(False)
             warna_aksi = aksi_warna.get(h["aksi"], C["text_muted"])
 
-            ctk.CTkLabel(row, text=h["waktu"], width=148,
-                font=F_NANO, text_color=C["text_muted"], anchor="w",
-            ).pack(side="left", padx=(10, 0))
-            ctk.CTkLabel(row, text=h["aksi"], width=78,
-                font=("Segoe UI Variable", 9, "bold"),
+            # Line number
+            ctk.CTkLabel(row,
+                text=f"  {idx+1:02d}",
+                font=("Consolas", 8),
+                text_color=C["text_hint"], width=28,
+            ).pack(side="left")
+
+            ctk.CTkLabel(row,
+                text=h["waktu"], width=160,
+                font=("Consolas", 8),
+                text_color=C["text_muted"], anchor="w",
+            ).pack(side="left")
+
+            ctk.CTkLabel(row,
+                text=f"[{h['aksi']}]", width=70,
+                font=("Consolas", 8, "bold"),
                 text_color=warna_aksi, anchor="w",
             ).pack(side="left")
-            ctk.CTkLabel(row, text=h["detail"],
-                font=F_NANO, text_color=C["text_secondary"],
-                anchor="w", wraplength=420,
-            ).pack(side="left", padx=(8, 0))
+
+            ctk.CTkLabel(row,
+                text=h["detail"],
+                font=("Consolas", 8),
+                text_color=C["text_secondary"],
+                anchor="w", wraplength=500,
+            ).pack(side="left", padx=(4, 8))
 
 
 # ============================================================
@@ -1023,7 +1249,9 @@ class HalamanMahasiswa(HalamanBase):
     def __init__(self, parent, on_nilai):
         super().__init__(parent)
         self._on_nilai = on_nilai
-        self._header("Data Mahasiswa", "Kelola data mahasiswa terdaftar")
+        self._page_header("◈", "Data Mahasiswa",
+                          "Kelola data mahasiswa terdaftar",
+                          accent=C["secondary"])
         _style_tree()
         self._build()
         self.refresh()
@@ -1054,7 +1282,6 @@ class HalamanMahasiswa(HalamanBase):
         )
         search.pack(side="left")
 
-        # Action buttons
         btn_specs = [
             ("+ Tambah",    self._form_tambah, C["primary"],    130),
             ("✎ Edit Nama", self._form_edit,   C["warning"],    120),
@@ -1065,14 +1292,12 @@ class HalamanMahasiswa(HalamanBase):
             _btn(inner_tb, txt, cmd, color=col, width=w, height=36
                  ).pack(side="right", padx=4)
 
-        # Table card
         tbl_frame = ctk.CTkFrame(self,
             fg_color=C["surface"],
             corner_radius=0,
             border_width=0)
         tbl_frame.pack(fill="both", expand=True, padx=0, pady=0)
 
-        # Table header strip
         hdr_strip = ctk.CTkFrame(tbl_frame,
             fg_color=C["surface_elevated"], height=2)
         hdr_strip.pack(fill="x")
@@ -1332,11 +1557,12 @@ class HalamanNilai(HalamanBase):
         self._on_selesai = on_selesai
         self._nim_aktif  = None
         self._entries    = []
-        self._header("Input Nilai", "Pilih mahasiswa dan semester, lalu isi nilai")
+        self._page_header("◉", "Input Nilai",
+                          "Pilih mahasiswa dan semester, lalu isi nilai",
+                          accent=C["highlight"])
         self._build()
 
     def _build(self):
-        # Top panel
         top = ctk.CTkFrame(self,
             fg_color=C["surface"], corner_radius=0,
             border_width=0)
@@ -1398,7 +1624,6 @@ class HalamanNilai(HalamanBase):
             text_color=C["text_main"])
         self._lbl_info.pack(side="left")
 
-        # Neon separator
         ctk.CTkFrame(self, height=1,
             fg_color=C["border_glow"], corner_radius=0,
         ).pack(fill="x")
@@ -1586,7 +1811,9 @@ class HalamanStatistik(HalamanBase):
 
     def __init__(self, parent):
         super().__init__(parent)
-        self._header("Statistik Kelas", "Visualisasi data akademik seluruh mahasiswa")
+        self._page_header("◈", "Statistik Kelas",
+                          "Visualisasi data akademik seluruh mahasiswa",
+                          accent=C["primary"])
         self._build()
 
     def _build(self):
@@ -1620,7 +1847,6 @@ class HalamanStatistik(HalamanBase):
         scroll = ctk.CTkScrollableFrame(self, fg_color="transparent")
         scroll.pack(fill="both", expand=True, padx=24, pady=(12, 0))
 
-        # Row 1: IPK bar + Predikat pie
         row1 = ctk.CTkFrame(scroll, fg_color="transparent")
         row1.pack(fill="x", pady=(0, 12))
         row1.columnconfigure(0, weight=3)
@@ -1644,7 +1870,6 @@ class HalamanStatistik(HalamanBase):
             bg=C["surface_glass"], highlightthickness=0)
         self._canvas_pred.pack(fill="x", padx=16, pady=(0, 14))
 
-        # Row 2: IPS line chart
         card_ips = self._card(scroll)
         card_ips.pack(fill="x", pady=(0, 12))
         ctk.CTkLabel(card_ips, text="◈  Rata-rata IPS per Semester",
@@ -1654,7 +1879,6 @@ class HalamanStatistik(HalamanBase):
             bg=C["surface_glass"], highlightthickness=0)
         self._canvas_ips.pack(fill="x", padx=16, pady=(0, 14))
 
-        # Row 3: Grade distribution
         card_grade = self._card(scroll)
         card_grade.pack(fill="x", pady=(0, 12))
         ctk.CTkLabel(card_grade, text="◉  Distribusi Grade (Semua Mata Kuliah)",
@@ -1664,7 +1888,6 @@ class HalamanStatistik(HalamanBase):
             bg=C["surface_glass"], highlightthickness=0)
         self._canvas_grade.pack(fill="x", padx=16, pady=(0, 14))
 
-        # Row 4: Summary
         card_sum = self._card(scroll)
         card_sum.pack(fill="x", pady=(0, 20))
         ctk.CTkLabel(card_sum, text="✦  Ringkasan Statistik",
@@ -1822,7 +2045,9 @@ class HalamanRiwayat(HalamanBase):
 
     def __init__(self, parent):
         super().__init__(parent)
-        self._header("Riwayat Aktivitas", "Log 20 operasi terakhir")
+        self._page_header("◉", "Riwayat Aktivitas",
+                          "Log 20 operasi terakhir",
+                          accent=C["warning"])
         _style_tree()
         self._build()
 
@@ -1877,7 +2102,8 @@ class HalamanRiwayat(HalamanBase):
 
 
 # ============================================================
-# HALAMAN LOGIN — NOVA GALAXY REDESIGN
+# HALAMAN LOGIN — ANDROMEDA REDESIGN
+# Asymmetric: centered floating card on deep starfield
 # ============================================================
 
 class HalamanLogin(ctk.CTkFrame):
@@ -1888,20 +2114,23 @@ class HalamanLogin(ctk.CTkFrame):
         self._build()
 
     def _build(self):
-        # ── Star field canvas background ───────────────────
+        # ── Full starfield canvas background ───────────────
         stars_canvas = tk.Canvas(self, bg=C["bg_main"], highlightthickness=0)
         stars_canvas.place(relx=0, rely=0, relwidth=1, relheight=1)
         self._paint_stars(stars_canvas)
+        self._draw_grid(stars_canvas)
 
-        # ── Left branding panel ────────────────────────────
-        kiri = ctk.CTkFrame(self, fg_color=C["surface"], corner_radius=0)
+        # ── Centered asymmetric layout ──────────────────────
+        # Left branding — angled / sci-fi panel
+        kiri = ctk.CTkFrame(self,
+            fg_color=C["surface"], corner_radius=0)
         kiri.place(relx=0, rely=0, relwidth=0.46, relheight=1)
 
         # Neon right border on left panel
         ctk.CTkFrame(kiri, width=2, fg_color=C["primary"],
                      corner_radius=0).place(relx=1.0, x=-2, y=0, relheight=1)
 
-        # Glowing orbit rings (simulated with canvas)
+        # Glowing orbit rings
         orbit_canvas = tk.Canvas(kiri, bg=C["surface"], highlightthickness=0,
                                  width=360, height=360)
         orbit_canvas.place(relx=0.5, rely=0.38, anchor="center")
@@ -1921,7 +2150,7 @@ class HalamanLogin(ctk.CTkFrame):
         ).place(relx=0.5, rely=0.45, anchor="center")
 
         ctk.CTkLabel(kiri,
-            text="Nova Galaxy Edition",
+            text="Andromeda Command Center",
             font=("Segoe UI Variable", 13, "bold"),
             text_color=C["secondary"],
         ).place(relx=0.5, rely=0.53, anchor="center")
@@ -1942,7 +2171,7 @@ class HalamanLogin(ctk.CTkFrame):
             width=140, height=28,
         ).place(relx=0.5, rely=0.74, anchor="center")
         ctk.CTkLabel(kiri,
-            text="v3.0 · 2025 · Galaxy",
+            text="v4.0 · 2025 · Andromeda",
             font=F_NANO,
             text_color=C["highlight"],
         ).place(relx=0.5, rely=0.74, anchor="center")
@@ -1963,7 +2192,6 @@ class HalamanLogin(ctk.CTkFrame):
             fg_color=C["primary"], corner_radius=2,
         ).pack(fill="x", padx=0, pady=0)
 
-        # Header
         hdr = ctk.CTkFrame(card, fg_color="transparent")
         hdr.pack(fill="x", padx=40, pady=(28, 10))
 
@@ -1977,12 +2205,10 @@ class HalamanLogin(ctk.CTkFrame):
             font=F_KECIL, text_color=C["text_muted"],
         ).pack(anchor="w", pady=(6, 0))
 
-        # Separator
         ctk.CTkFrame(card, height=1,
             fg_color=C["border_glow"],
         ).pack(fill="x", padx=40, pady=(12, 0))
 
-        # Form
         form = ctk.CTkFrame(card, fg_color="transparent")
         form.pack(fill="x", padx=40, pady=(18, 10))
 
@@ -2028,6 +2254,20 @@ class HalamanLogin(ctk.CTkFrame):
             ])
             canvas.create_oval(x-r, y-r, x+r, y+r, fill=col, outline="")
 
+    def _draw_grid(self, canvas):
+        """Subtle perspective grid lines on starfield."""
+        self.update_idletasks()
+        w = self.winfo_width() or 1280
+        h = self.winfo_height() or 740
+        # Horizontal lines fading to horizon
+        for i in range(0, h, 60):
+            alpha = max(0.03, 0.15 - i / h * 0.12)
+            col = "#1a2645"
+            canvas.create_line(0, i, w, i, fill=col, width=1, dash=(4, 12))
+        # Vertical lines
+        for i in range(0, w, 80):
+            canvas.create_line(i, 0, i, h, fill="#1a2645", width=1, dash=(3, 16))
+
     def _draw_orbits(self, canvas):
         cx, cy = 180, 180
         for r, col, dash in [
@@ -2056,8 +2296,8 @@ class App(ctk.CTk):
     def __init__(self):
         super().__init__()
         self.title("SIMA — Andromeda Command Center v4.0")
-        self.geometry("1440x820")
-        self.minsize(1200, 700)
+        self.geometry("1360x780")
+        self.minsize(1100, 660)
         self.configure(fg_color=C["bg_main"])
         _style_tree()
         self._tampil_login()
@@ -2069,21 +2309,21 @@ class App(ctk.CTk):
     def _setelah_login(self):
         self._bersih()
         self._bangun_shell()
-        self._sidebar.aktifkan("dashboard")
+        self._topnav.aktifkan("dashboard")
 
     def _bangun_shell(self):
-        # Main shell with transparent background
-        shell_frame = ctk.CTkFrame(self, fg_color="transparent")
-        shell_frame.pack(fill="both", expand=True)
+        # ── Top nav bar (replaces sidebar) ──────────────────
+        self._topnav = TopNavBar(self, self._navigasi)
+        self._topnav.pack(side="top", fill="x")
 
-        # Floating mini dock sidebar (left, but not full height)
-        self._sidebar = Sidebar(shell_frame, self._navigasi)
-        self._sidebar.pack(side="left", fill="y", padx=(16, 8), pady=20)
+        # Neon horizontal separator under nav
+        ctk.CTkFrame(self, height=1,
+            fg_color=C["border_glow"], corner_radius=0,
+        ).pack(side="top", fill="x")
 
-        # Content area
-        self._area = ctk.CTkFrame(shell_frame,
-            corner_radius=0, fg_color="transparent")
-        self._area.pack(side="left", fill="both", expand=True, padx=(0, 16), pady=20)
+        self._area = ctk.CTkFrame(self,
+            corner_radius=0, fg_color=C["bg_main"])
+        self._area.pack(side="top", fill="both", expand=True)
 
         self._dash      = HalamanDashboard(self._area)
         self._mhs       = HalamanMahasiswa(self._area, on_nilai=self._buka_nilai)
@@ -2124,7 +2364,7 @@ class App(ctk.CTk):
         if key == "riwayat":    self._riwayat.refresh()
 
     def _buka_nilai(self, nim: str):
-        self._sidebar.aktifkan("nilai")
+        self._topnav.aktifkan("nilai")
         self._nilai.set_nim(nim)
 
     def _selesai_nilai(self):
