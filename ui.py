@@ -840,29 +840,29 @@ class HalamanDashboard(HalamanBase):
         tag_frame.place(x=20, y=16)
         tag_frame.pack_propagate(False)
         ctk.CTkLabel(tag_frame, text="⬡  SPOTLIGHT",
-            font=("Segoe UI Variable", 8, "bold"),
+            font=("Segoe UI Variable", 13, "bold"),
             text_color="#ffffff",
         ).place(relx=0.5, rely=0.5, anchor="center")
 
         ctk.CTkLabel(spotlight,
             text="MAHASISWA TERBAIK",
-            font=("Segoe UI Variable", 8, "bold"),
+            font=("Segoe UI Variable", 12, "bold"),
             text_color=C["text_hint"],
-        ).place(x=20, y=46)
+        ).place(x=20, y=50)
 
         self._lbl_best = ctk.CTkLabel(spotlight,
             text="—",
-            font=("Segoe UI Variable", 20, "bold"),
+            font=("Segoe UI Variable", 25, "bold"),
             text_color=C["highlight"],
         )
-        self._lbl_best.place(x=20, y=62)
+        self._lbl_best.place(x=20, y=85)
 
         self._lbl_best_ipk = ctk.CTkLabel(spotlight,
             text="",
-            font=F_KECIL,
+            font=("Segoe UI Variable", 12, "bold"),
             text_color=C["text_muted"],
         )
-        self._lbl_best_ipk.place(x=20, y=96)
+        self._lbl_best_ipk.place(x=20, y=125)
 
         # IPK max/min badges
         max_frame = ctk.CTkFrame(spotlight,
@@ -871,13 +871,13 @@ class HalamanDashboard(HalamanBase):
             width=100, height=58)
         max_frame.place(relx=0.38, y=24)
         max_frame.pack_propagate(False)
-        ctk.CTkLabel(max_frame, text="IPK MAX",
+        ctk.CTkLabel(max_frame, text="IPK Tertinggi",
             font=F_NANO, text_color=C["text_hint"],
         ).place(x=10, y=6)
         self._lbl_ipk_max = ctk.CTkLabel(max_frame, text="0.00",
             font=("Segoe UI Variable", 20, "bold"),
             text_color=C["success"])
-        self._lbl_ipk_max.place(x=10, y=24)
+        self._lbl_ipk_max.place(x=20, y=24)
 
         min_frame = ctk.CTkFrame(spotlight,
             fg_color=C["error_bg"], corner_radius=12,
@@ -885,13 +885,13 @@ class HalamanDashboard(HalamanBase):
             width=100, height=58)
         min_frame.place(relx=0.53, y=24)
         min_frame.pack_propagate(False)
-        ctk.CTkLabel(min_frame, text="IPK MIN",
+        ctk.CTkLabel(min_frame, text="IPK Terendah",
             font=F_NANO, text_color=C["text_hint"],
         ).place(x=10, y=6)
         self._lbl_ipk_min = ctk.CTkLabel(min_frame, text="0.00",
             font=("Segoe UI Variable", 20, "bold"),
             text_color=C["error"])
-        self._lbl_ipk_min.place(x=10, y=24)
+        self._lbl_ipk_min.place(x=20, y=24)
 
         # Bottom glow separator
         ctk.CTkFrame(parent, height=1, fg_color=C["border_glow"],
@@ -916,11 +916,11 @@ class HalamanDashboard(HalamanBase):
             ("Sangat Baik",     C["success"],     "A-"),
             ("Baik",            C["secondary"],   "B"),
             ("Cukup",           C["warning"],     "C"),
-            ("Perlu Perbaikan", C["error"],       "D/E"),
+            ("Perlu Perbaikan", C["error"],       "D"),
         ]
         # place them in a horizontal row
         dist_inner = ctk.CTkFrame(dist_strip, fg_color="transparent")
-        dist_inner.place(x=16, y=28, relwidth=0.95)
+        dist_inner.place(x=16, y=30, relwidth=1)
 
         for nama, warna, short in predikat_specs:
             cell = ctk.CTkFrame(dist_inner,
@@ -928,7 +928,7 @@ class HalamanDashboard(HalamanBase):
                 corner_radius=10,
                 border_width=1,
                 border_color=warna,
-                width=132, height=43,
+                width=132, height=50,
             )
             cell.pack(side="left", padx=4)
             cell.pack_propagate(False)
@@ -1045,7 +1045,7 @@ class HalamanDashboard(HalamanBase):
         sys_inner.pack(fill="x", padx=16, pady=8)
 
         ctk.CTkLabel(sys_inner,
-            text="ACADEMIC YEAR 2024/2025",
+            text="ACADEMIC YEAR 2025/2026",
             font=("Segoe UI Variable", 7, "bold"),
             text_color=C["text_hint"],
         ).pack(anchor="w")
@@ -1066,9 +1066,9 @@ class HalamanDashboard(HalamanBase):
         # Quick stat vertical stack
         ctk.CTkLabel(parent,
             text="  ◈  QUICK METRICS",
-            font=("Segoe UI Variable", 8, "bold"),
+            font=("Segoe UI Variable", 10, "bold"),
             text_color=C["secondary"],
-        ).pack(anchor="w", padx=0, pady=(10, 4))
+        ).pack(anchor="w", padx=2, pady=(10, 4))
 
         scroll_right = ctk.CTkScrollableFrame(parent,
             fg_color="transparent",
@@ -1077,11 +1077,11 @@ class HalamanDashboard(HalamanBase):
 
         # Vertical IPK gauge-style cards
         ipk_metrics = [
-            ("Cumlaude  ≥ 3.75",  "CL", C["primary"]),
-            ("Sangat Baik ≥ 3.50", "SB", C["success"]),
+            ("Cumlaude  ≥ 3.75",  "A", C["primary"]),
+            ("Sangat Baik ≥ 3.50", "A-", C["success"]),
             ("Baik  ≥ 3.00",       "B",  C["secondary"]),
             ("Cukup  ≥ 2.50",      "C",  C["warning"]),
-            ("Perlu Perbaikan",     "PP", C["error"]),
+            ("Perlu Perbaikan",     "D", C["error"]),
         ]
         self._right_dist_labels = {}
         for label, short, warna in ipk_metrics:
@@ -1090,7 +1090,7 @@ class HalamanDashboard(HalamanBase):
                 corner_radius=14,
                 border_width=1,
                 border_color=C["border_solid"],
-                height=60,
+                height=50,
             )
             mcard.pack(fill="x", padx=12, pady=3)
             mcard.pack_propagate(False)
@@ -1126,14 +1126,14 @@ class HalamanDashboard(HalamanBase):
         health_card.pack_propagate(False)
 
         ctk.CTkLabel(health_card,
-            text="  ◉  SYSTEM STATUS",
+            text="",
             font=("Segoe UI Variable", 8, "bold"),
             text_color=C["text_hint"],
         ).place(x=0, y=6)
 
         for i, (sys_label, sys_val, col) in enumerate([
-            ("Database", "Connected", C["success"]),
-            ("Records", "Active", C["secondary"]),
+            ("", "", C["success"]),
+            ("", "", C["secondary"]),
         ]):
             ctk.CTkLabel(health_card,
                 text=f"  {sys_label}",
