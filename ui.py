@@ -737,398 +737,247 @@ class HalamanDashboard(HalamanBase):
 
     def __init__(self, parent):
         super().__init__(parent)
-        self._header("GALAXY COMMAND CENTER", "Andromeda Academic System")
+        self._header("Mission Control", "Dashboard · Sistem Informasi Akademik")
         self._build()
 
     def _build(self):
-
-        # =========================================================
-        # MAIN WRAPPER
-        # =========================================================
-        wrapper = ctk.CTkFrame(
-            self,
-            fg_color="transparent"
-        )
-        wrapper.pack(fill="both", expand=True, padx=24, pady=(18, 18))
-
-        # =========================================================
-        # TOP AREA
-        # =========================================================
-        top_area = ctk.CTkFrame(wrapper, fg_color="transparent")
-        top_area.pack(fill="x", pady=(0, 18))
-
-        # LEFT SIDE
-        left_top = ctk.CTkFrame(top_area, fg_color="transparent")
-        left_top.pack(side="left", fill="both", expand=True)
-
-        # RIGHT SIDE
-        right_top = ctk.CTkFrame(top_area, fg_color="transparent")
-        right_top.pack(side="right", padx=(18, 0))
-
-        # =========================================================
-        # WELCOME PANEL
-        # =========================================================
-        welcome = ctk.CTkFrame(
-            left_top,
-            fg_color="#111827",
-            corner_radius=28,
-            border_width=1,
-            border_color="#2b3a67",
-            height=180
-        )
-        welcome.pack(fill="x")
-        welcome.pack_propagate(False)
-
-        # glow line
-        ctk.CTkFrame(
-            welcome,
-            fg_color="#7c3aed",
-            height=4,
-            corner_radius=12
-        ).pack(fill="x", padx=22, pady=(0, 0))
-
-        ctk.CTkLabel(
-            welcome,
-            text="✦ Mission Control",
-            font=("Segoe UI Variable", 30, "bold"),
-            text_color="#f5f3ff"
-        ).place(x=28, y=28)
-
-        ctk.CTkLabel(
-            welcome,
-            text="Kelola sistem akademik dengan tampilan futuristik galaxy.",
-            font=("Segoe UI Variable", 12),
-            text_color="#9ca3af"
-        ).place(x=30, y=76)
-
-        # orbit mini cards
-        mini_wrap = ctk.CTkFrame(
-            welcome,
-            fg_color="transparent"
-        )
-        mini_wrap.place(x=28, y=112)
-
-        mini_specs = [
-            ("1000", "Mahasiswa", "#38bdf8"),
-            ("3.5", "Rata IPK", "#c084fc"),
-            ("99%", "Stabil", "#10b981")
-        ]
-
-        for i, (v, t, c) in enumerate(mini_specs):
-
-            box = ctk.CTkFrame(
-                mini_wrap,
-                width=120,
-                height=48,
-                fg_color="#18233f",
-                corner_radius=18,
-                border_width=1,
-                border_color="#26345c"
-            )
-            box.grid(row=0, column=i, padx=8)
-            box.grid_propagate(False)
-
-            ctk.CTkLabel(
-                box,
-                text=v,
-                font=("Segoe UI Variable", 16, "bold"),
-                text_color=c
-            ).place(x=14, y=6)
-
-            ctk.CTkLabel(
-                box,
-                text=t,
-                font=("Segoe UI Variable", 9),
-                text_color="#94a3b8"
-            ).place(x=14, y=28)
-
-        # =========================================================
-        # RIGHT PROFILE PANEL
-        # =========================================================
-        profile = ctk.CTkFrame(
-            right_top,
-            width=280,
-            height=180,
-            fg_color="#111827",
-            corner_radius=28,
-            border_width=1,
-            border_color="#2b3a67"
-        )
-        profile.pack()
-        profile.pack_propagate(False)
-
-        ctk.CTkLabel(
-            profile,
-            text="SYSTEM STATUS",
-            font=("Segoe UI Variable", 11, "bold"),
-            text_color="#38bdf8"
-        ).pack(anchor="w", padx=22, pady=(20, 6))
-
-        status_specs = [
-            ("Database", "ONLINE", "#10b981"),
-            ("Server", "STABLE", "#38bdf8"),
-            ("Security", "ACTIVE", "#c084fc"),
-        ]
-
-        for title, value, color in status_specs:
-
-            row = ctk.CTkFrame(
-                profile,
-                fg_color="#18233f",
-                height=42,
-                corner_radius=14
-            )
-            row.pack(fill="x", padx=18, pady=5)
-            row.pack_propagate(False)
-
-            ctk.CTkLabel(
-                row,
-                text=title,
-                font=("Segoe UI Variable", 10),
-                text_color="#d1d5db"
-            ).pack(side="left", padx=14)
-
-            ctk.CTkLabel(
-                row,
-                text=value,
-                font=("Segoe UI Variable", 10, "bold"),
-                text_color=color
-            ).pack(side="right", padx=14)
-
-        # =========================================================
-        # STATS GRID
-        # =========================================================
-        stats_wrap = ctk.CTkFrame(wrapper, fg_color="transparent")
-        stats_wrap.pack(fill="x", pady=(0, 18))
+        # ── Stat cards row ─────────────────────────────────
+        row1 = ctk.CTkFrame(self, fg_color="transparent")
+        row1.pack(fill="x", padx=28, pady=(20, 12))
 
         self._cards = {}
-
         specs = [
-            ("total", "Mahasiswa", "#38bdf8", "◈"),
-            ("sudah_nilai", "Sudah Dinilai", "#10b981", "◉"),
-            ("rata_ipk", "Rata IPK", "#c084fc", "✦"),
-            ("belum_nilai", "Belum Dinilai", "#ec4899", "◎"),
+            ("total",       "Total Mahasiswa",   C["secondary"],    "◈", "terdaftar"),
+            ("sudah_nilai", "Sudah Input Nilai",  C["success"],      "◉", "mahasiswa"),
+            ("rata_ipk",    "Rata-rata IPK",      C["highlight"],    "✦", "dari 4.00"),
+            ("belum_nilai", "Belum Input Nilai",  C["accent_pink"],  "◈", "mahasiswa"),
         ]
-
-        for i, (key, label, warna, icon) in enumerate(specs):
-
-            card = ctk.CTkFrame(
-                stats_wrap,
-                fg_color="#111827",
-                corner_radius=26,
+        for col, (key, label, warna, icon, satuan) in enumerate(specs):
+            card = ctk.CTkFrame(row1,
+                fg_color=C["surface"],
+                corner_radius=20,
                 border_width=1,
-                border_color="#26345c",
-                width=240,
-                height=150
+                border_color=C["border_glow"],
+                height=130,
             )
-            card.grid(row=0, column=i, padx=8)
+            card.grid(row=0, column=col, padx=8, sticky="nsew")
             card.grid_propagate(False)
+            row1.columnconfigure(col, weight=1)
 
-            # neon top line
-            ctk.CTkFrame(
-                card,
-                fg_color=warna,
-                height=4,
-                corner_radius=10
-            ).pack(fill="x", padx=18, pady=(14, 0))
+            inner = ctk.CTkFrame(card, fg_color="transparent")
+            inner.place(relwidth=1, relheight=1)
 
-            ctk.CTkLabel(
-                card,
-                text=icon,
-                font=("Segoe UI Variable", 22),
-                text_color=warna
-            ).place(x=22, y=34)
+            # Left neon accent bar
+            ctk.CTkFrame(inner, width=4, fg_color=warna,
+                         corner_radius=2).place(x=0, y=0, relheight=1)
 
-            ctk.CTkLabel(
-                card,
-                text=label.upper(),
-                font=("Segoe UI Variable", 10, "bold"),
-                text_color="#9ca3af"
-            ).place(x=60, y=40)
+            # Icon chip
+            chip = ctk.CTkFrame(inner, width=34, height=34,
+                fg_color=C["surface_elevated"], corner_radius=10)
+            chip.place(x=18, y=16)
+            ctk.CTkLabel(chip, text=icon, font=("Segoe UI Variable", 14),
+                text_color=warna).place(relx=0.5, rely=0.5, anchor="center")
 
-            val = ctk.CTkLabel(
-                card,
-                text="0",
-                font=("Segoe UI Variable", 34, "bold"),
-                text_color="#f5f3ff"
-            )
-            val.place(x=22, y=72)
+            # Label
+            ctk.CTkLabel(inner, text=label.upper(),
+                font=("Segoe UI Variable", 8, "bold"),
+                text_color=C["text_muted"],
+                wraplength=160,
+                anchor="w",
+            ).place(x=58, y=18)
 
-            self._cards[key] = val
+            # Value
+            val_lbl = ctk.CTkLabel(inner, text="0",
+                font=("Segoe UI Variable", 30, "bold"),
+                text_color=warna, anchor="w")
+            val_lbl.place(x=18, y=52)
 
-        # =========================================================
-        # BOTTOM SECTION
-        # =========================================================
-        bottom = ctk.CTkFrame(wrapper, fg_color="transparent")
-        bottom.pack(fill="both", expand=True)
+            # Satuan
+            ctk.CTkLabel(inner, text=satuan,
+                font=F_NANO, text_color=C["text_hint"],
+                wraplength=160, anchor="w",
+            ).place(x=20, y=100)
 
-        # LEFT
-        left_bottom = ctk.CTkFrame(
-            bottom,
-            fg_color="#111827",
-            corner_radius=28,
-            border_width=1,
-            border_color="#2b3a67"
-        )
-        left_bottom.pack(side="left", fill="both", expand=True, padx=(0, 10))
+            self._cards[key] = val_lbl
 
-        # RIGHT
-        right_bottom = ctk.CTkFrame(
-            bottom,
-            width=330,
-            fg_color="#111827",
-            corner_radius=28,
-            border_width=1,
-            border_color="#2b3a67"
-        )
-        right_bottom.pack(side="right", fill="y")
+        # ── Info panels row ────────────────────────────────
+        row2 = ctk.CTkFrame(self, fg_color="transparent")
+        row2.pack(fill="x", padx=28, pady=(0, 12))
+        row2.columnconfigure(0, weight=2)
+        row2.columnconfigure(1, weight=3)
 
-        # =========================================================
-        # ACTIVITY HEADER
-        # =========================================================
-        hdr = ctk.CTkFrame(left_bottom, fg_color="transparent")
-        hdr.pack(fill="x", padx=24, pady=(20, 12))
+        # Best student card
+        info_card = ctk.CTkFrame(row2,
+            fg_color=C["surface"], corner_radius=20,
+            border_width=1, border_color=C["border_glow"], height=140)
+        info_card.grid(row=0, column=0, padx=(0, 8), sticky="nsew")
+        info_card.grid_propagate(False)
 
-        ctk.CTkLabel(
-            hdr,
-            text="◈ Activity Stream",
-            font=("Segoe UI Variable", 20, "bold"),
-            text_color="#f5f3ff"
+        ctk.CTkLabel(info_card,
+            text="✦  MAHASISWA TERBAIK",
+            font=("Segoe UI Variable", 9, "bold"),
+            text_color=C["secondary"],
+        ).place(x=20, y=16)
+
+        self._lbl_best = ctk.CTkLabel(info_card, text="—",
+            font=("Segoe UI Variable", 13, "bold"),
+            text_color=C["highlight"],
+            wraplength=180, justify="left")
+        self._lbl_best.place(x=20, y=38)
+
+        self._lbl_best_ipk = ctk.CTkLabel(info_card, text="",
+            font=F_KECIL, text_color=C["text_muted"])
+        self._lbl_best_ipk.place(x=20, y=76)
+
+        # Vertical divider
+        ctk.CTkFrame(info_card, width=1, fg_color=C["border_solid"]
+            ).place(relx=0.56, y=12, relheight=0.76)
+
+        ctk.CTkLabel(info_card, text="IPK MAX",
+            font=F_NANO, text_color=C["text_hint"],
+        ).place(relx=0.60, y=20)
+        self._lbl_ipk_max = ctk.CTkLabel(info_card, text="0.00",
+            font=("Segoe UI Variable", 22, "bold"), text_color=C["success"])
+        self._lbl_ipk_max.place(relx=0.60, y=38)
+
+        ctk.CTkLabel(info_card, text="IPK MIN",
+            font=F_NANO, text_color=C["text_hint"],
+        ).place(relx=0.60, y=78)
+        self._lbl_ipk_min = ctk.CTkLabel(info_card, text="0.00",
+            font=("Segoe UI Variable", 18, "bold"), text_color=C["error"])
+        self._lbl_ipk_min.place(relx=0.60, y=96)
+
+        # Distribution card
+        dist_card = ctk.CTkFrame(row2,
+            fg_color=C["surface"], corner_radius=20,
+            border_width=1, border_color=C["border_glow"], height=140)
+        dist_card.grid(row=0, column=1, padx=(8, 0), sticky="nsew")
+        dist_card.grid_propagate(False)
+
+        ctk.CTkLabel(dist_card,
+            text="✦  DISTRIBUSI PREDIKAT",
+            font=("Segoe UI Variable", 9, "bold"),
+            text_color=C["secondary"],
+        ).place(x=18, y=16)
+
+        self._dist_labels = {}
+        predikat_specs = [
+            ("Cumlaude",        C["primary"]),
+            ("Sangat Baik",     C["success"]),
+            ("Baik",            C["secondary"]),
+            ("Cukup",           C["warning"]),
+            ("Perlu Perbaikan", C["error"]),
+        ]
+        for idx, (nama, warna) in enumerate(predikat_specs):
+            x_pos = 18 + idx * 112
+            ctk.CTkLabel(dist_card, text=nama,
+                font=("Segoe UI Variable", 8), text_color=C["text_muted"],
+                wraplength=100,
+            ).place(x=x_pos, y=46)
+            lbl_val = ctk.CTkLabel(dist_card, text="0",
+                font=("Segoe UI Variable", 22, "bold"), text_color=warna)
+            lbl_val.place(x=x_pos, y=70)
+            self._dist_labels[nama] = lbl_val
+
+        # ── Activity feed card ─────────────────────────────
+        feed_card = ctk.CTkFrame(self,
+            fg_color=C["surface"], corner_radius=20,
+            border_width=1, border_color=C["border_glow"])
+        feed_card.pack(fill="both", expand=True, padx=28, pady=(0, 20))
+
+        hdr_row = ctk.CTkFrame(feed_card, fg_color="transparent")
+        hdr_row.pack(fill="x", padx=20, pady=(14, 0))
+        ctk.CTkLabel(hdr_row,
+            text="◈  Aktivitas Terbaru",
+            font=F_SUBJUDUL, text_color=C["text_main"],
         ).pack(side="left")
-
-        ctk.CTkLabel(
-            hdr,
-            text="Realtime monitoring",
-            font=("Segoe UI Variable", 10),
-            text_color="#9ca3af"
+        ctk.CTkLabel(hdr_row,
+            text="10 operasi terakhir",
+            font=F_NANO, text_color=C["text_muted"],
         ).pack(side="right")
 
-        # =========================================================
-        # ACTIVITY FRAME
-        # =========================================================
+        # Column header
+        col_hdr = ctk.CTkFrame(feed_card,
+            fg_color=C["surface_elevated"], height=30, corner_radius=0)
+        col_hdr.pack(fill="x", padx=20, pady=(8, 0))
+        col_hdr.pack_propagate(False)
+        for txt, w in [("Waktu", 155), ("Aksi", 85), ("Detail", 0)]:
+            ctk.CTkLabel(col_hdr, text=txt, width=w,
+                font=("Segoe UI Variable", 9, "bold"),
+                text_color=C["secondary"], anchor="w",
+            ).pack(side="left", padx=(12, 0))
+
         self._riwayat_frame = ctk.CTkScrollableFrame(
-            left_bottom,
-            fg_color="transparent"
-        )
-        self._riwayat_frame.pack(fill="both", expand=True, padx=18, pady=(0, 18))
-
-        # =========================================================
-        # RIGHT ANALYTICS
-        # =========================================================
-        ctk.CTkLabel(
-            right_bottom,
-            text="✦ ANALYTICS",
-            font=("Segoe UI Variable", 16, "bold"),
-            text_color="#38bdf8"
-        ).pack(anchor="w", padx=22, pady=(22, 18))
-
-        self._lbl_ipk_max = ctk.CTkLabel(
-            right_bottom,
-            text="0.00",
-            font=("Segoe UI Variable", 42, "bold"),
-            text_color="#10b981"
-        )
-        self._lbl_ipk_max.pack(anchor="w", padx=22)
-
-        ctk.CTkLabel(
-            right_bottom,
-            text="IPK TERTINGGI",
-            font=("Segoe UI Variable", 10),
-            text_color="#94a3b8"
-        ).pack(anchor="w", padx=22)
-
-        self._lbl_ipk_min = ctk.CTkLabel(
-            right_bottom,
-            text="0.00",
-            font=("Segoe UI Variable", 28, "bold"),
-            text_color="#ef4444"
-        )
-        self._lbl_ipk_min.pack(anchor="w", padx=22, pady=(24, 0))
-
-        ctk.CTkLabel(
-            right_bottom,
-            text="IPK TERENDAH",
-            font=("Segoe UI Variable", 10),
-            text_color="#94a3b8"
-        ).pack(anchor="w", padx=22)
-
-        # =========================================================
-        # BEST STUDENT
-        # =========================================================
-        best_box = ctk.CTkFrame(
-            right_bottom,
-            fg_color="#18233f",
-            corner_radius=20,
-            height=110
-        )
-        best_box.pack(fill="x", padx=18, pady=24)
-        best_box.pack_propagate(False)
-
-        ctk.CTkLabel(
-            best_box,
-            text="TOP STUDENT",
-            font=("Segoe UI Variable", 10, "bold"),
-            text_color="#38bdf8"
-        ).place(x=18, y=18)
-
-        self._lbl_best = ctk.CTkLabel(
-            best_box,
-            text="-",
-            font=("Segoe UI Variable", 18, "bold"),
-            text_color="#f5f3ff"
-        )
-        self._lbl_best.place(x=18, y=42)
-
-        self._lbl_best_ipk = ctk.CTkLabel(
-            best_box,
-            text="",
-            font=("Segoe UI Variable", 11),
-            text_color="#c084fc"
-        )
-        self._lbl_best_ipk.place(x=18, y=74)
-
-        # =========================================================
-        # DISTRIBUTION
-        # =========================================================
-        self._dist_labels = {}
-
-        predikat_specs = [
-            ("Cumlaude", "#7c3aed"),
-            ("Sangat Baik", "#10b981"),
-            ("Baik", "#38bdf8"),
-            ("Cukup", "#f59e0b"),
-            ("Perlu Perbaikan", "#ef4444"),
-        ]
-
-        for nama, warna in predikat_specs:
-
-            item = ctk.CTkFrame(
-                right_bottom,
-                fg_color="#18233f",
-                height=52,
-                corner_radius=16
-            )
-            item.pack(fill="x", padx=18, pady=5)
-            item.pack_propagate(False)
-
-            ctk.CTkLabel(
-                item,
-                text=nama,
-                font=("Segoe UI Variable", 10),
-                text_color="#d1d5db"
-            ).pack(side="left", padx=14)
-
-            val = ctk.CTkLabel(
-                item,
-                text="0",
-                font=("Segoe UI Variable", 18, "bold"),
-                text_color=warna
-            )
-            val.pack(side="right", padx=14)
-
-            self._dist_labels[nama] = val
+            feed_card, fg_color="transparent")
+        self._riwayat_frame.pack(fill="both", expand=True, padx=20, pady=(4, 12))
 
         self.refresh()
+
+    def refresh(self):
+        stat  = db.statistik()
+        semua = db.get_semua()
+
+        total = stat["total"]
+        sudah = stat["sudah_nilai"]
+
+        self._cards["total"].configure(text=str(total))
+        self._cards["sudah_nilai"].configure(text=str(sudah))
+        self._cards["rata_ipk"].configure(text=str(stat["rata_ipk"]))
+        self._cards["belum_nilai"].configure(text=str(total - sudah))
+
+        if stat["terbaik"] != "-":
+            self._lbl_best.configure(text=stat["terbaik"])
+            self._lbl_best_ipk.configure(text=f"IPK {stat['terbaik_ipk']:.2f}")
+        else:
+            self._lbl_best.configure(text="belum ada data")
+            self._lbl_best_ipk.configure(text="")
+
+        ipk_vals = [db.ipk_mahasiswa(m) for m in semua if m["semester"]]
+        if ipk_vals:
+            self._lbl_ipk_max.configure(text=f"{max(ipk_vals):.2f}")
+            self._lbl_ipk_min.configure(text=f"{min(ipk_vals):.2f}")
+        else:
+            self._lbl_ipk_max.configure(text="0.00")
+            self._lbl_ipk_min.configure(text="0.00")
+
+        dist = {"Cumlaude": 0, "Sangat Baik": 0, "Baik": 0,
+                "Cukup": 0, "Perlu Perbaikan": 0}
+        for m in semua:
+            if m["semester"]:
+                p = db.predikat(db.ipk_mahasiswa(m))
+                if p in dist:
+                    dist[p] += 1
+        for nama, lbl in self._dist_labels.items():
+            lbl.configure(text=str(dist.get(nama, 0)))
+
+        aksi_warna = {
+            "TAMBAH": C["success"],
+            "HAPUS":  C["error"],
+            "NILAI":  C["secondary"],
+            "EDIT":   C["warning"],
+        }
+        for w in self._riwayat_frame.winfo_children():
+            w.destroy()
+        for h in db.get_riwayat()[:10]:
+            row = ctk.CTkFrame(self._riwayat_frame,
+                fg_color=C["surface_elevated"],
+                corner_radius=10, height=38)
+            row.pack(fill="x", pady=2)
+            row.pack_propagate(False)
+            warna_aksi = aksi_warna.get(h["aksi"], C["text_muted"])
+
+            ctk.CTkLabel(row, text=h["waktu"], width=148,
+                font=F_NANO, text_color=C["text_muted"], anchor="w",
+            ).pack(side="left", padx=(10, 0))
+            ctk.CTkLabel(row, text=h["aksi"], width=78,
+                font=("Segoe UI Variable", 9, "bold"),
+                text_color=warna_aksi, anchor="w",
+            ).pack(side="left")
+            ctk.CTkLabel(row, text=h["detail"],
+                font=F_NANO, text_color=C["text_secondary"],
+                anchor="w", wraplength=420,
+            ).pack(side="left", padx=(8, 0))
+
 
 # ============================================================
 # HALAMAN DATA MAHASISWA
